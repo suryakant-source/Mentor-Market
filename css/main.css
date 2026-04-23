@@ -76,6 +76,14 @@
   transform: scaleX(1);
 }
 
+.navbar__links a.nav-link--active {
+  color: var(--gold-primary);
+}
+
+.navbar__links a.nav-link--active::after {
+  transform: scaleX(1);
+}
+
 .navbar__actions {
   display: flex;
   align-items: center;
@@ -432,6 +440,93 @@
   }
 }
 
+/* ========================
+   TOAST NOTIFICATIONS
+   ======================== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--navy-deep);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 300ms var(--ease-spring), opacity 300ms var(--ease-out);
+}
+
+.toast--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast__icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast--success .toast__icon {
+  background: var(--green-success);
+}
+
+.toast--success .toast__icon::after {
+  content: '';
+  width: 6px;
+  height: 10px;
+  border: 2px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-2px);
+}
+
+.toast--error .toast__icon {
+  background: var(--red-error);
+}
+
+.toast--error .toast__icon::after {
+  content: '';
+  width: 10px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+}
+
+.toast--info .toast__icon {
+  background: var(--blue-info);
+}
+
+.toast--info .toast__icon::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.toast__message {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+@media (max-width: 480px) {
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
 /* Animation Classes */
 .fade-in-up {
   opacity: 0;
@@ -441,6 +536,18 @@
 }
 
 .fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-container [data-stagger] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.stagger-container [data-stagger].visible {
   opacity: 1;
   transform: translateY(0);
 }

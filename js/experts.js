@@ -378,6 +378,35 @@ function sortExperts(experts) {
   return sortFns[currentFilters.sort] ? sortFns[currentFilters.sort]() : experts;
 }
 
+function parseUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('domain')) {
+    const domainId = params.get('domain');
+    currentFilters.domains = [domainId];
+    const chip = document.querySelector(`.quick-filter-chip[data-domain="${domainId}"]`);
+    if (chip) chip.classList.add('active');
+  }
+
+  if (params.has('keyword')) {
+    const keyword = params.get('keyword');
+    currentFilters.search = keyword;
+    const searchInput = document.querySelector('.page-hero__search-input');
+    if (searchInput) searchInput.value = keyword;
+  }
+}
+
+function updateUrlParams() {
+  const params = new URLSearchParams();
+
+  if (currentFilters.search) params.set('keyword', currentFilters.search);
+  if (currentFilters.domains.length > 0) params.set('domain', currentFilters.domains[0]);
+  if (currentFilters.sort !== 'best_match') params.set('sort', currentFilters.sort);
+
+  const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+  history.pushState({}, '', newUrl);
+}
+
 function renderExperts() {
   const grid = document.querySelector('.expert-cards-grid');
   const countEl = document.querySelector('.results-header__count');
@@ -441,73 +470,8 @@ function renderExperts() {
     `).join('');
 
     renderPagination(total);
+    updateUrlParams();
   }, 500);
-}
-
-function renderPagination(total) {
-  const pagination = document.querySelector('.pagination');
-  const totalPages = Math.ceil(total / itemsPerPage);
-
-  if (totalPages <= 1) {
-    pagination.innerHTML = '';
-    return;
-  }
-
-  let html = `
-    <button class="pagination__btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
-    </button>
-  `;
-
-  for (let i = 1; i <= totalPages; i++) {
-    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-      html += `
-        <button class="pagination__btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>
-      `;
-    } else if (i === currentPage - 2 || i === currentPage + 2) {
-      html += `<span style="padding: 0 8px; color: var(--gray-400);">...</span>`;
-    }
-  }
-
-  html += `
-    <button class="pagination__btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="9 18 15 12 9 6"/>
-      </svg>
-    </button>
-  `;
-
-  pagination.innerHTML = html;
-}
-
-function goToPage(page) {
-  currentPage = page;
-  renderExperts();
-  window.scrollTo({ top: document.querySelector('.experts-content').offsetTop - 100, behavior: 'smooth' });
-}
-
-function clearAllFilters() {
-  currentFilters = {
-    search: '',
-    domains: [],
-    minPrice: 0,
-    maxPrice: 500,
-    minRating: 0,
-    experience: '',
-    sort: 'best_match'
-  };
-  currentPage = 1;
-
-  document.querySelector('.page-hero__search-input').value = '';
-  document.querySelectorAll('.quick-filter-chip').forEach(chip => chip.classList.remove('active'));
-  document.querySelectorAll('.filter-sidebar input').forEach(input => input.checked = false);
-  document.querySelectorAll('.rating-item').forEach(item => item.classList.remove('active'));
-  document.getElementById('minPrice').value = 0;
-  document.getElementById('maxPrice').value = 500;
-
-  renderExperts();
 }
 
 function initSortDropdown() {
@@ -521,62 +485,56 @@ function initSortDropdown() {
   });
 }
 
-function initMobileFilters() {
-  const filterBtn = document.querySelector('[data-action="open-filter"]');
-  const sortBtn = document.querySelector('[data-action="open-sort"]');
-  const drawer = document.querySelector('.filter-drawer');
-  const overlay = document.querySelector('.filter-drawer__overlay');
-  const closeBtn = document.querySelector('.filter-drawer__close');
-  const sortDropdown = document.querySelector('.sort-dropdown-mobile__content');
+document.addEventListener('DOMContentLoaded', () => {
+  renderSkeletons();
+  parseUrlParams();
+  initQuickFilters();
+  initFilterSidebar();
+  initSearch();
+  initSortDropdown();
+  initMobileFilters();
 
-  if (filterBtn && drawer) {
-    filterBtn.addEventListener('click', () => {
-      drawer.classList.add('active');
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+  setTimeout(() => {
+    renderExperts();
+  }, 800);
+});
 
-    closeBtn.addEventListener('click', closeDrawer);
-    overlay.addEventListener('click', closeDrawer);
+function renderPagination(total) {
+  const container = document.querySelector('.pagination');
+  if (!container) return;
 
-    function closeDrawer() {
-      drawer.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    const applyBtn = drawer.querySelector('#applyFilters');
-    if (applyBtn) {
-      applyBtn.addEventListener('click', closeDrawer);
-    }
+  const totalPages = Math.ceil(total / itemsPerPage);
+  if (totalPages <= 1) {
+    container.innerHTML = '';
+    return;
   }
 
-  if (sortBtn && sortDropdown) {
-    sortBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sortDropdown.classList.toggle('active');
-    });
-
-    document.addEventListener('click', () => {
-      sortDropdown.classList.remove('active');
-    });
-
-    sortDropdown.querySelectorAll('.sort-dropdown-mobile__item').forEach(item => {
-      item.addEventListener('click', () => {
-        currentFilters.sort = item.dataset.sort;
-        document.getElementById('sortSelect').value = currentFilters.sort;
-        sortBtn.textContent = item.textContent;
-        sortDropdown.classList.remove('active');
-        currentPage = 1;
-        renderExperts();
-      });
-    });
+  let html = '';
+  if (currentPage > 1) {
+    html += `<button class="pagination__btn" data-page="${currentPage - 1}">&laquo; Prev</button>`;
   }
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<button class="pagination__btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+  }
+  if (currentPage < totalPages) {
+    html += `<button class="pagination__btn" data-page="${currentPage + 1}">Next &raquo;</button>`;
+  }
+
+  container.innerHTML = html;
+
+  container.addEventListener('click', (e) => {
+    const btn = e.target.closest('.pagination__btn');
+    if (!btn) return;
+    currentPage = parseInt(btn.dataset.page);
+    renderExperts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 function initSearch() {
   const searchInput = document.querySelector('.page-hero__search-input');
   const searchBtn = document.querySelector('.page-hero__search-btn');
+  if (!searchInput || !searchBtn) return;
 
   let debounceTimer;
 
@@ -606,6 +564,7 @@ function initSearch() {
 
 function renderSkeletons() {
   const grid = document.querySelector('.expert-cards-grid');
+  if (!grid) return;
   grid.classList.add('loading');
 
   grid.innerHTML = Array(9).fill(0).map(() => `
@@ -622,15 +581,89 @@ function renderSkeletons() {
   `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderSkeletons();
-  initQuickFilters();
-  initFilterSidebar();
-  initSearch();
-  initSortDropdown();
-  initMobileFilters();
+function initMobileFilters() {
+  const filterBtn = document.querySelector('[data-action="open-filter"]');
+  const sortBtn = document.querySelector('[data-action="open-sort"]');
+  const drawer = document.querySelector('.filter-drawer');
+  const overlay = document.querySelector('.filter-drawer__overlay');
+  const closeBtn = document.querySelector('.filter-drawer__close');
+  const sortDropdown = document.querySelector('.sort-dropdown-mobile__content');
+  const drawerContent = drawer?.querySelector('.filter-drawer__content');
+  const sidebarContent = document.querySelector('.filter-sidebar');
 
-  setTimeout(() => {
-    renderExperts();
-  }, 800);
-});
+  if (filterBtn && drawer && sidebarContent && drawerContent) {
+    drawerContent.innerHTML = sidebarContent.innerHTML;
+
+    drawerContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const value = cb.value;
+        if (cb.checked) {
+          if (!currentFilters.domains.includes(value)) currentFilters.domains.push(value);
+        } else {
+          currentFilters.domains = currentFilters.domains.filter(d => d !== value);
+        }
+      });
+    });
+
+    drawerContent.querySelectorAll('input[type="radio"]').forEach(rb => {
+      rb.addEventListener('change', () => {
+        if (rb.name === 'experience') currentFilters.experience = rb.value;
+      });
+    });
+
+    drawerContent.querySelectorAll('.rating-item').forEach(item => {
+      item.addEventListener('click', () => {
+        drawerContent.querySelectorAll('.rating-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        currentFilters.minRating = parseInt(item.dataset.rating);
+      });
+    });
+
+    filterBtn.addEventListener('click', () => {
+      drawer.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    function closeDrawer() {
+      drawer.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    const applyBtn = drawer.querySelector('#applyFilters');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        currentPage = 1;
+        renderExperts();
+        closeDrawer();
+      });
+    }
+  }
+
+  if (sortBtn && sortDropdown) {
+    sortBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sortDropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      sortDropdown.classList.remove('active');
+    });
+
+    sortDropdown.querySelectorAll('.sort-dropdown-mobile__item').forEach(item => {
+      item.addEventListener('click', () => {
+        currentFilters.sort = item.dataset.sort;
+        const selectEl = document.getElementById('sortSelect');
+        if (selectEl) selectEl.value = currentFilters.sort;
+        sortBtn.textContent = item.textContent;
+        sortDropdown.classList.remove('active');
+        currentPage = 1;
+        renderExperts();
+      });
+    });
+  }
+}

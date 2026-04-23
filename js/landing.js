@@ -129,14 +129,66 @@ function initExpertsNav() {
 
   if (!container || !prevBtn || !nextBtn) return;
 
-  const scrollAmount = 320;
+  const cardWidth = 290;
+
+  function updateArrows() {
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    prevBtn.style.opacity = container.scrollLeft <= 10 ? '0.3' : '1';
+    nextBtn.style.opacity = container.scrollLeft >= maxScroll - 10 ? '0.3' : '1';
+  }
 
   prevBtn.addEventListener('click', () => {
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    container.scrollBy({ left: -cardWidth, behavior: 'smooth' });
   });
 
   nextBtn.addEventListener('click', () => {
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+
+  container.addEventListener('scroll', updateArrows);
+  updateArrows();
+}
+
+function createRipple(event, element) {
+  const ripple = document.createElement('div');
+  ripple.className = 'ripple-effect';
+
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (event.clientX - rect.left - size / 2) + 'px';
+  ripple.style.top = (event.clientY - rect.top - size / 2) + 'px';
+
+  element.appendChild(ripple);
+
+  requestAnimationFrame(() => {
+    ripple.classList.add('ripple-active');
+  });
+
+  setTimeout(() => ripple.remove(), 400);
+}
+
+function initDomainsGrid() {
+  const grid = document.querySelector('.domains__grid');
+  if (!grid) return;
+
+  grid.innerHTML = domains.map((domain, index) => `
+    <div class="domain-card" data-domain="${domain.id}" data-stagger style="transition-delay: ${index * 60}ms">
+      <div class="domain-card__icon">${domain.icon}</div>
+      <div class="domain-card__name">${domain.name}</div>
+      <div class="domain-card__count">${domain.count} Experts</div>
+    </div>
+  `).join('');
+
+  grid.addEventListener('click', (e) => {
+    const card = e.target.closest('.domain-card');
+    if (!card) return;
+
+    createRipple(e, card);
+
+    setTimeout(() => {
+      window.location.href = `experts.html?domain=${card.dataset.domain}`;
+    }, 200);
   });
 }
 

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expert FAQ — MentorMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/content-pages.css">
+  <style>
+    .faq-hero {
+      background: var(--navy-deep);
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.12) 0%, transparent 70%);
+      padding: 140px 48px 60px;
+      text-align: center;
+    }
+
+    .faq-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .faq-hero .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.70);
+      max-width: 580px;
+      margin: 0 auto 32px;
+    }
+
+    .faq-hero .quick-jumps {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quick-jump {
+      padding: 10px 20px;
+      border: 1px solid rgba(245,166,35,0.40);
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .quick-jump:hover {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: var(--navy-deep);
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 48px;
+    }
+
+    .faq-content {
+      max-width: 780px;
+    }
+
+    .faq-section {
+      margin-bottom: 64px;
+    }
+
+    .faq-section__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .faq-section__header svg {
+      width: 24px;
+      height: 24px;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    .faq-section__header h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+
+    .faq-section__header + p {
+      font-size: 15px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 200ms ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--gold-primary);
+    }
+
+    .faq-item.active {
+      border-color: var(--gold-primary);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      background: var(--white);
+    }
+
+    .faq-question h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin: 0;
+      flex: 1;
+    }
+
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      transition: transform 300ms ease;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 300ms ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 24px 24px;
+      max-height: 1000px;
+    }
+
+    .faq-answer p {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.80;
+      margin-bottom: 16px;
+    }
+
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    .faq-answer li {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .faq-answer a {
+      color: var(--gold-primary);
+      font-weight: 500;
+    }
+
+    .faq-callout {
+      background: var(--navy-deep);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+
+    .faq-callout__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .faq-callout__title svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .faq-callout p, .faq-callout li {
+      color: rgba(255,255,255,0.80);
+      font-size: 14px;
+    }
+
+    .faq-callout ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .fee-breakdown {
+      margin: 20px 0;
+    }
+
+    .fee-breakdown h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 16px;
+    }
+
+    .fee-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .fee-bar-item__label {
+      width: 160px;
+      font-size: 13px;
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+
+    .fee-bar-item__bar {
+      flex: 1;
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .fee-bar-item__fill {
+      height: 100%;
+      background: var(--gold-primary);
+      border-radius: 4px;
+    }
+
+    .fee-bar-item__percent {
+      width: 36px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      text-align: right;
+    }
+
+    .fee-bar-item__total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 2px solid var(--gray-200);
+    }
+
+    .earnings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .earnings-table th {
+      background: var(--navy-deep);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .earnings-table td {
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .earnings-table tr:nth-child(even) td {
+      background: var(--gray-100);
+    }
+
+    .earnings-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .earnings-table .highlight {
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .tip-card {
+      background: var(--gold-pale);
+      border: 1px solid rgba(245,166,35,0.25);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+    }
+
+    .tip-card__number {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      opacity: 0.15;
+      line-height: 1;
+    }
+
+    .tip-card p {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .faq-sidebar {
+      position: sticky;
+      top: 88px;
+      height: fit-content;
+    }
+
+    .sidebar-apply-card {
+      background: var(--white);
+      border: 2px solid var(--gold-primary);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-apply-card h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-apply-card .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+    }
+
+    .sidebar-apply-card .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-apply-card .check-list li svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    .sidebar-apply-card .btn {
+      width: 100%;
+    }
+
+    .earnings-calc-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .earnings-calc-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 20px;
+    }
+
+    .earnings-calc-card .form-group {
+      margin-bottom: 12px;
+    }
+
+    .earnings-calc-card label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+    }
+
+    .earnings-calc-card input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-family: var(--font-body);
+    }
+
+    .earnings-calc-card input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+
+    .earnings-calc-card .result {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    .earnings-calc-card .result-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+    }
+
+    .earnings-calc-card .result-amount {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .earnings-calc-card .result-footnote {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-top: 8px;
+    }
+
+    .sidebar-support-card {
+      background: var(--cream);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .sidebar-support-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 8px;
+    }
+
+    .sidebar-support-card p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-support-card .email-link {
+      display: block;
+      font-size: 14px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-support-card .btn {
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .faq-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .faq-hero {
+        padding: 120px 24px 40px;
+      }
+
+      .faq-hero h1 {
+        font-size: 32px;
+      }
+
+      .faq-layout {
+        padding: 40px 24px;
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="8" fill="#F5A623"/>
+        <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      MentorMarket
+    </a>
+    <ul class="navbar__links">
+      <li><a href="experts.html">Browse Experts</a></li>
+      <li><a href="success-stories.html">Success Stories</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <a href="login.html" class="btn btn--ghost">Login</a>
+      <a href="register-expert.html" class="btn btn--primary">Become an Expert</a>
+    </div>
+    <button class="navbar__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="experts.html">Browse Experts</a>
+    <a href="success-stories.html">Success Stories</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn btn--ghost">Login</a>
+    <a href="register-expert.html" class="btn btn--primary">Become an Expert</a>
+  </div>
+
+  <section class="faq-hero">
+    <span class="label-chip label-chip--gold" style="margin-bottom: 20px;">EXPERT RESOURCE CENTER</span>
+    <h1>Everything You Need to Know Before You Apply</h1>
+    <p class="hero-subtitle">We built this page because we know that sharing your expertise is a significant decision. Read everything here. Then apply.</p>
+    <div class="quick-jumps">
+      <a class="quick-jump" href="#getting-started">Earning & Rates</a>
+      <a class="quick-jump" href="#verification">Verification Process</a>
+      <a class="quick-jump" href="#sessions">Session Experience</a>
+      <a class="quick-jump" href="#policies">Platform Policies</a>
+    </div>
+  </section>
+
+  <div class="faq-layout">
+    <div class="faq-content">
+
+      <div class="faq-section" id="getting-started">
+        <div class="faq-section__header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h2>Getting Started</h2>
+        </div>
+        <p>The basics of joining MentorMarket as an expert.</p>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Who qualifies as an expert on MentorMarket?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>We look for professionals with <strong>15+ years of experience</strong> in their domain. This typically means you've held senior leadership positions — Director level or above — at established organizations. We verify your employment history, credentials, and accomplishments through our review process.</p>
+            <p>You don't need a specific academic background or certifications beyond what's standard in your industry. What matters is that you've genuinely walked the path your potential mentees are trying to navigate.</p>
+            <p>We currently support <strong>10 core domains</strong>: Finance, Legal, Operations, Healthcare, Technology, HR & Culture, Sales, Supply Chain, Marketing, and Real Estate. If your expertise falls outside these domains, we may still be able to accommodate you — reach out to our expert team.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do I apply?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>The application process takes about 15–20 minutes. You'll need:</p>
+            <ul>
+              <li>Your current or most recent professional title and organization</li>
+              <li>A summary of your domain expertise (3–5 sentences)</li>
+              <li>Your preferred hourly rate</li>
+              <li>Availability (hours per week you can commit)</li>
+              <li>LinkedIn profile or CV for verification</li>
+            </ul>
+            <p>After submitting, our team reviews your application within <strong>48 business hours</strong>. If approved, you'll receive an email with next steps to complete your profile.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is there a fee to join as an expert?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p><strong>No — joining MentorMarket is completely free.</strong> There are no registration fees, no subscription costs, and no upfront charges of any kind. We only earn when you earn.</p>
+            <p>Our revenue comes from a platform fee taken on each successful booking. This is how we fund verification, platform maintenance, customer support, and video infrastructure — all the things that make your sessions possible.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What happens after I submit my application?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>After submission, our team reviews your application within <strong>48 business hours</strong>. We check:</p>
+            <ul>
+              <li>Employment history and claimed titles</li>
+              <li>Educational credentials</li>
+              <li>LinkedIn verification</li>
+              <li>Reference checks (optional but strongly recommended)</li>
+            </ul>
+            <p>If approved, you'll receive an email with a link to complete your expert profile — add your photo, bio, session policies, and set your calendar availability. Once your profile is live, buyers can find and book you immediately.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Why was my application rejected? Can I reapply?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Applications may be declined if we can't verify the credentials you provided, if your experience level doesn't meet our minimum threshold, or if your domain isn't currently supported on the platform.</p>
+            <p><strong>Yes, you can reapply</strong> after 6 months. If your circumstances have changed (for example, you received a promotion or moved to a more senior role), your new application will be reviewed on its merits.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section" id="verification">
+        <div class="faq-section__header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h2>Earning and Rates</h2>
+        </div>
+        <p>Everything about how experts earn on MentorMarket.</p>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do I set my hourly rate? What should I charge?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>You set your own rate. We don't mandate or cap rates — they reflect the value you place on your time and expertise. Our experts charge anywhere from <strong>₹2,000 to ₹10,000 per session</strong>, depending on their experience level and domain.</p>
+            <p>As a starting point, consider what you'd pay for an hour of high-quality professional advice in your field. If you're unsure, start modestly — you can raise your rate at any time, but increasing it after you've built a rating is harder.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is MentorMarket's platform fee?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>MentorMarket charges a <strong>22% platform fee</strong> on each booking. This fee covers everything needed to run a marketplace that connects you with buyers reliably.</p>
+            <div class="fee-breakdown">
+              <h4>Here's how the 22% fee is distributed:</h4>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Payment Processing</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 14%"></div></div>
+                <span class="fee-bar-item__percent">3%</span>
+              </div>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Video Infrastructure</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 18%"></div></div>
+                <span class="fee-bar-item__percent">4%</span>
+              </div>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Platform Maintenance</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 23%"></div></div>
+                <span class="fee-bar-item__percent">5%</span>
+              </div>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Expert Verification</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 18%"></div></div>
+                <span class="fee-bar-item__percent">4%</span>
+              </div>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Customer Support</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 14%"></div></div>
+                <span class="fee-bar-item__percent">3%</span>
+              </div>
+              <div class="fee-bar-item">
+                <span class="fee-bar-item__label">Platform Growth</span>
+                <div class="fee-bar-item__bar"><div class="fee-bar-item__fill" style="width: 14%"></div></div>
+                <span class="fee-bar-item__percent">3%</span>
+              </div>
+              <div class="fee-bar-item__total">
+                <span>You keep</span>
+                <span class="highlight">78% of every session</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is the average earning of an expert on MentorMarket?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Earnings vary significantly based on your rate and the number of sessions you take on. Here's a realistic illustration of monthly earnings after our 22% platform fee:</p>
+            <table class="earnings-table">
+              <thead>
+                <tr>
+                  <th>Hourly Rate</th>
+                  <th>Sessions/Month</th>
+                  <th>Gross Earnings</th>
+                  <th>After Fee</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>₹3,000/hr</td>
+                  <td>4</td>
+                  <td>₹12,000</td>
+                  <td class="highlight">₹9,360</td>
+                </tr>
+                <tr>
+                  <td>₹5,000/hr</td>
+                  <td>8</td>
+                  <td>₹40,000</td>
+                  <td class="highlight">₹31,200</td>
+                </tr>
+                <tr>
+                  <td>₹8,000/hr</td>
+                  <td>12</td>
+                  <td>₹96,000</td>
+                  <td class="highlight">₹74,880</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Our top-earning experts, who maintain high ratings and take on consistent bookings, earn ₹3–5 lakh per month with part-time commitment.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How and when do I get paid?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Payments are processed on the <strong>15th of each month</strong> for the previous month's completed sessions. We offer direct bank transfer (NEFT/RTGS) to Indian bank accounts at no cost. For international experts, we support PayPal and Wise transfers (transfer fees apply and vary by country).</p>
+            <p>Minimum payout threshold is ₹2,000. If your balance is below this, it carries forward to the next month.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I change my rate after my profile goes live?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, you can update your rate at any time through your dashboard. Changes take effect for new bookings immediately — existing booked sessions are honored at the rate agreed upon at the time of booking.</p>
+            <p>Note: decreasing your rate won't affect your standing on the platform, but increasing it may prompt some buyers to reconsider. We recommend building a strong rating before raising rates significantly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I offer free introductory sessions?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>MentorMarket doesn't support free sessions on the platform. However, you can offer a discounted introductory rate (as low as ₹500) to let buyers try your style before committing at full price. Some experts use this approach very effectively.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section" id="sessions">
+        <div class="faq-section__header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h2>The Session Experience</h2>
+        </div>
+        <p>What to expect when you're mentoring on the platform.</p>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What happens during a session? What is the format?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Sessions are conducted via <strong>video call</strong> through our integrated Zoom-based platform. You and the buyer join a dedicated session link that's generated when the booking is confirmed. Sessions typically run 45–50 minutes, with the last 5–10 minutes reserved for questions and next steps.</p>
+            <p>You have full control over session format. You can prepare an agenda, use screen sharing for presentations or documents, or simply have a free-flowing conversation. There's no script — you bring your expertise and experience.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What technology do I need?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>A computer with a webcam and stable internet connection (10+ Mbps) is sufficient. For the best experience, we recommend:</p>
+            <ul>
+              <li>A quiet, well-lit room for video calls</li>
+              <li>Headphones to avoid audio feedback</li>
+              <li>A second screen if you plan to share documents or slides</li>
+              <li>The Zoom desktop app installed (it's more stable than the browser version)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Are sessions confidential?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-callout">
+              <div class="faq-callout__title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Expert Confidentiality Policy
+              </div>
+              <ul>
+                <li><strong>What we collect:</strong> Session dates, expert and buyer names, billing information</li>
+                <li><strong>What we share:</strong> Only session metadata with the expert and buyer involved</li>
+                <li><strong>What we don't share:</strong> The content of your conversations, documents shared, or advice given</li>
+                <li><strong>Session notes:</strong> Owned by the expert. You may take personal notes but not share or publish them without buyer consent</li>
+                <li><strong>Disputes:</strong> Any confidential information dispute is handled privately and subject to our dispute resolution process</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What if a buyer doesn't show up?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Buyers who miss sessions without notice are charged in full. You'll receive the full session fee regardless. For late cancellations (within 24 hours), the standard cancellation policy applies — the buyer forfeits their payment.</p>
+            <p>If a buyer is consistently not showing up, you can block them from booking future sessions through your dashboard.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I refuse a booking?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. You can decline booking requests without explanation. We recommend declining politely and quickly so the buyer can find another expert. Frequent declines without engagement may affect your profile visibility in search.</p>
+            <p>Once you've accepted a booking and it appears on your calendar, cancelling is discouraged. If you must cancel, do so at least 48 hours in advance to avoid a late cancellation penalty.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I share documents or presentations during a session?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely. You can share your screen, upload files, or use third-party tools during sessions. Many experts prepare slide decks, financial models, or reference documents in advance. Some share a one-page summary after the session as a follow-up gift.</p>
+            <p>Note: MentorMarket doesn't store session recordings or shared screen content. Anything you share is ephemeral.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section" id="policies">
+        <div class="faq-section__header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h2>Platform Policies</h2>
+        </div>
+        <p>The rules of the platform, explained clearly.</p>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is your cancellation and refund policy?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Buyers can cancel and receive a full refund up to 24 hours before the scheduled session. Within 24 hours, no refund is issued. If you cancel a confirmed booking more than 48 hours in advance, there's no penalty. Cancelling within 48 hours may affect your profile standing.</p>
+            <p>MentorMarket reserves the right to issue refunds in cases of demonstrated technical failure on our end.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How does the rating and review system work?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>After each session, buyers are prompted to leave a 1–5 star rating and an optional written review. Your average rating is prominently displayed on your profile and affects how you appear in search results.</p>
+            <p>Reviews are published immediately. Experts can flag inappropriate reviews for our team to review. We remove reviews that violate our community guidelines (defamatory language, personal attacks, or content unrelated to the session).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I work with a buyer directly after meeting them on MentorMarket?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p><strong>No.</strong> Our terms of service prohibit arranging sessions or any form of paid engagement outside the platform for 12 months after your first session with a buyer. This includes direct hiring, consulting engagements, or any other paid work — whether or not it relates to topics discussed in sessions.</p>
+            <p>Violating this policy results in immediate account termination. This policy protects both the platform and ensures you receive genuine mentorship rather than being used as a free consultant.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is there an exclusivity requirement?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>No. You can offer your expertise on any other platform or work with buyers independently — as long as those arrangements don't violate the non-circumvention policy above. MentorMarket is not an exclusive engagement.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What happens if I want to take a break?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>You can pause your profile at any time. When paused, your profile is hidden from search results and no new bookings are accepted. Your existing bookings are honored, and your profile data and ratings are preserved.</p>
+            <p>To deactivate temporarily, go to Dashboard → Profile Settings → Availability → "Take a Break." There's no time limit — you can reactivate whenever you're ready.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do I permanently delete my account?</h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-answer">
+            <p>You can permanently delete your account from Dashboard → Profile Settings → Delete Account. This action is irreversible — your profile, ratings, and payment history will be permanently removed.</p>
+            <p>Any pending bookings must be completed or cancelled before deletion. Final payouts are processed within 30 days of account deletion.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-section">
+        <div class="faq-section__header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          <h2>Tips for Success</h2>
+        </div>
+        <p>What separates experts who thrive on MentorMarket from those who don't.</p>
+
+        <div class="tips-grid">
+          <div class="tip-card">
+            <span class="tip-card__number">1</span>
+            <p>Experts with professional headshots get <strong>3× more profile views</strong> than those without. Use a clear, well-lit photo where you're smiling.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-card__number">2</span>
+            <p>Responding to booking requests within <strong>2 hours</strong> increases your conversion rate by 60%. Buyers move fast.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-card__number">3</span>
+            <p>Experts who write a blog article on the platform get <strong>featured on the homepage</strong>, driving significant profile traffic.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-card__number">4</span>
+            <p>Your first 3 sessions set your rating trajectory. Treat them as <strong>showcase sessions</strong> — overdeliver on preparation.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-card__number">5</span>
+            <p>Profiles with detailed bios showing specific accomplishments get <strong>2× more bookings</strong> than generic descriptions.</p>
+          </div>
+          <div class="tip-card">
+            <span class="tip-card__number">6</span>
+            <p>After each session, send a brief follow-up message. Buyers who feel <strong>personally connected</strong> return 3× more often.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="faq-sidebar">
+      <div class="sidebar-apply-card">
+        <h3>Ready to Apply?</h3>
+        <ul class="check-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Set your own rate
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Get verified in 48 hours
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Keep 78% of every session
+          </li>
+        </ul>
+        <a href="register-expert.html" class="btn btn--primary">Start Your Application</a>
+      </div>
+
+      <div class="earnings-calc-card">
+        <h3>Estimate Your Monthly Earnings</h3>
+        <div class="form-group">
+          <label>Hourly Rate (₹)</label>
+          <input type="number" id="calcRate" value="4000" min="500" max="20000" step="500">
+        </div>
+        <div class="form-group">
+          <label>Sessions per Month</label>
+          <input type="number" id="calcSessions" value="6" min="1" max="30">
+        </div>
+        <div class="result">
+          <div class="result-label">Est. Monthly Payout</div>
+          <div class="result-amount" id="calcResult">₹18,720</div>
+          <div class="result-footnote">After 22% platform fee</div>
+        </div>
+      </div>
+
+      <div class="sidebar-support-card">
+        <h3>Still have questions?</h3>
+        <p>Our expert success team is happy to help.</p>
+        <a href="mailto:experts@mentormarket.com" class="email-link">experts@mentormarket.com</a>
+        <a href="contact.html" class="btn btn--ghost-dark">Chat with Expert Team</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <svg viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="8" fill="#F5A623"/>
+            <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          MentorMarket
+        </a>
+        <p class="footer__tagline">Connecting professionals with retired industry leaders for personalized mentorship and career growth.</p>
+      </div>
+      <div class="footer__column">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="experts.html">Browse Experts</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="success-stories.html">Success Stories</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>For Experts</h4>
+        <ul>
+          <li><a href="register-expert.html">Become an Expert</a></li>
+          <li><a href="expert-dashboard.html">Expert Dashboard</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="expert-faq.html">Expert FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 MentorMarket. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    const calcRate = document.getElementById('calcRate');
+    const calcSessions = document.getElementById('calcSessions');
+    const calcResult = document.getElementById('calcResult');
+
+    function updateCalc() {
+      const rate = parseInt(calcRate.value) || 0;
+      const sessions = parseInt(calcSessions.value) || 0;
+      const payout = rate * sessions * 0.78;
+      calcResult.textContent = '₹' + payout.toLocaleString('en-IN');
+    }
+
+    calcRate.addEventListener('input', updateCalc);
+    calcSessions.addEventListener('input', updateCalc);
+
+    document.querySelectorAll('.quick-jump').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        const target = document.querySelector(chip.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const nav = document.querySelector('.navbar');
+          const offset = nav ? nav.offsetHeight : 72;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

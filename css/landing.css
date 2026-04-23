@@ -478,6 +478,22 @@
   background: var(--navy-deep);
 }
 
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.3);
+  transform: scale(0);
+  pointer-events: none;
+  animation: rippleExpand 400ms ease-out forwards;
+}
+
+@keyframes rippleExpand {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
 .domain-card--active .domain-card__icon,
 .domain-card--active .domain-card__name,
 .domain-card--active .domain-card__count {

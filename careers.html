@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers — MentorMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/content-pages.css">
+  <link rel="stylesheet" href="css/careers.css">
+  <style>
+    .careers-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .careers-hero__bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .careers-hero__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 22, 40, 0.75);
+      z-index: 1;
+    }
+
+    .careers-hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 48px 80px;
+      max-width: 800px;
+    }
+
+    .careers-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .careers-hero .hero-subtitle {
+      font-size: 20px;
+      color: rgba(255,255,255,0.80);
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .careers-hero .culture-chips {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .culture-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--gold-primary);
+      color: var(--navy-deep);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+    }
+
+    .culture-chip svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .culture-section {
+      background: var(--cream);
+      padding: 96px 48px;
+    }
+
+    .culture-section__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .culture-section__left h2 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--navy-deep);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .culture-section__left p {
+      font-size: 17px;
+      color: var(--gray-600);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .culture-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .culture-value {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .culture-value__icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .culture-value__icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--gold-primary);
+    }
+
+    .culture-value h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy-deep);
+      margin-bottom: 8px;
+    }
+
+    .culture-value p {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .perks-section {
+      background: var(--white);
+      padding: 64px 0;
+      overflow: hidden;
+    }
+
+    .perks-section__header {
+      padding: 0 48px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .perks-section__header h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+
+    .perks-nav {
+      display: flex;
+      gap: 12px;
+    }
+
+    .perks-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .perks-nav-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .perks-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .perks-nav-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .perks-scroll-container {
+      position: relative;
+    }
+
+    .perks-row {
+      display: flex;
+      gap: 24px;
+      padding: 0 48px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .perks-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .perk-card {
+      min-width: 200px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .perk-card__icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .perk-card__icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--gold-primary);
+    }
+
+    .perk-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 8px;
+    }
+
+    .perk-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .jobs-section {
+      background: var(--gray-100);
+      padding: 80px 48px;
+    }
+
+    .jobs-section__header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .jobs-section__header h2 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+
+    .jobs-count-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--gold-primary);
+      color: var(--navy-deep);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+    }
+
+    .jobs-filters {
+      max-width: 1200px;
+      margin: 0 auto 32px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .jobs-filters::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .jobs-filters::-webkit-scrollbar-thumb {
+      background: var(--gray-300);
+      border-radius: 2px;
+    }
+
+    .filter-tab {
+      padding: 12px 24px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+      cursor: pointer;
+      white-space: nowrap;
+      position: relative;
+      transition: color 200ms ease;
+    }
+
+    .filter-tab:hover {
+      color: var(--gold-primary);
+    }
+
+    .filter-tab.active {
+      color: var(--navy-deep);
+    }
+
+    .filter-tab__underline {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: var(--gold-primary);
+      border-radius: 1px;
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .filter-tab.active .filter-tab__underline {
+      opacity: 1;
+    }
+
+    .jobs-list {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .job-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      cursor: pointer;
+      transition: all 300ms var(--ease-spring);
+    }
+
+    .job-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .job-card:hover .job-card__title {
+      color: var(--navy-deep);
+    }
+
+    .job-card__left {
+      flex: 1;
+    }
+
+    .job-card__dept {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .job-card__title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 12px;
+      transition: color 200ms ease;
+    }
+
+    .job-card__meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .job-card__meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .job-card__meta-chip svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .job-card__desc {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .job-card__tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .job-card__tag {
+      padding: 4px 12px;
+      background: var(--gray-100);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    .job-card__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .job-card__salary {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .job-card__date {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    .job-card__actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .job-card__apply-btn {
+      padding: 10px 20px;
+    }
+
+    .job-card__save-btn {
+      padding: 10px 14px;
+      background: transparent;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .job-card__save-btn:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .job-card__save-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .empty-state__icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 24px;
+      background: var(--cream);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-state__icon svg {
+      width: 48px;
+      height: 48px;
+      color: var(--gray-400);
+    }
+
+    .empty-state h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 12px;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+
+    .empty-state__form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .empty-state__form input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+    }
+
+    .job-card--exiting {
+      animation: fadeOut 250ms ease forwards;
+    }
+
+    .job-card--entering {
+      animation: fadeIn 300ms ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; height: 0; padding: 0; margin: 0; overflow: hidden; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1024px) {
+      .culture-section__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .culture-values {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .careers-hero__content {
+        padding: 120px 24px 60px;
+      }
+
+      .careers-hero h1 {
+        font-size: 36px;
+      }
+
+      .careers-hero .hero-subtitle {
+        font-size: 17px;
+      }
+
+      .culture-section {
+        padding: 60px 24px;
+      }
+
+      .culture-section__left h2 {
+        font-size: 28px;
+      }
+
+      .perks-section__header {
+        padding: 0 24px;
+      }
+
+      .perks-row {
+        padding: 0 24px;
+      }
+
+      .jobs-section {
+        padding: 48px 24px;
+      }
+
+      .jobs-section__header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .job-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .job-card__right {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="8" fill="#F5A623"/>
+        <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      MentorMarket
+    </a>
+    <ul class="navbar__links">
+      <li><a href="experts.html">Browse Experts</a></li>
+      <li><a href="success-stories.html">Success Stories</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <a href="login.html" class="btn btn--ghost">Login</a>
+      <a href="register-buyer.html" class="btn btn--primary">Sign Up</a>
+    </div>
+    <button class="navbar__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="experts.html">Browse Experts</a>
+    <a href="success-stories.html">Success Stories</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn btn--ghost">Login</a>
+    <a href="register-buyer.html" class="btn btn--primary">Sign Up</a>
+  </div>
+
+  <section class="careers-hero">
+    <img src="assets/team/hero-bg.jpg" alt="Team working together" class="careers-hero__bg" onerror="this.style.display='none'; document.querySelector('.careers-hero').style.background='var(--navy-deep)';">
+    <div class="careers-hero__overlay"></div>
+    <div class="careers-hero__content">
+      <span class="label-chip label-chip--gold" style="margin-bottom: 20px;">JOIN THE TEAM</span>
+      <h1>Build the Future of Human Expertise</h1>
+      <p class="hero-subtitle">We are a small team solving a large problem — reconnecting decades of real-world knowledge with the people who need it most. If that sentence makes you feel something, you should probably work here.</p>
+      <div class="culture-chips">
+        <span class="culture-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Remote-First
+        </span>
+        <span class="culture-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Mission-Driven
+        </span>
+        <span class="culture-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L20 7V17L12 22L4 17V7L12 2Z"/></svg>
+          Equity Included
+        </span>
+        <span class="culture-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Health Benefits
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="culture-section">
+    <div class="culture-section__grid">
+      <div class="culture-section__left">
+        <h2>We are building something that actually matters</h2>
+        <p>Most marketplaces move physical goods. We move knowledge. The kind that took 30 years and millions of rupees in mistakes to accumulate. We make that knowledge accessible to anyone building something real.</p>
+        <p>We believe that experience shouldn't be locked in retirement accounts. It should be shared, multiplied, and invested in the next generation of builders. Every session on our platform is proof that this idea works.</p>
+        <p>If that sounds like the kind of problem worth solving, you belong here.</p>
+      </div>
+      <div class="culture-values">
+        <div class="culture-value">
+          <div class="culture-value__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Radical Honesty</h3>
+          <p>We say what we mean and what we see. No politics, no hidden agendas.</p>
+        </div>
+        <div class="culture-value">
+          <div class="culture-value__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          </div>
+          <h3>Expertise Obsession</h3>
+          <p>We are in awe of deep domain knowledge. We seek it out relentlessly.</p>
+        </div>
+        <div class="culture-value">
+          <div class="culture-value__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Builder's Mindset</h3>
+          <p>Shipped beats perfect every time. We ship, learn, and iterate.</p>
+        </div>
+        <div class="culture-value">
+          <div class="culture-value__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <h3>Human First</h3>
+          <p>Every metric is someone's livelihood. We never forget that.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="perks-section">
+    <div class="perks-section__header">
+      <h2>What You'll Get</h2>
+      <div class="perks-nav">
+        <button class="perks-nav-btn" id="perksPrevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="perks-nav-btn" id="perksNextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="perks-scroll-container">
+      <div class="perks-row" id="perksRow">
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Remote Work</h3>
+          <p>Work from anywhere</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Flexible Hours</h3>
+          <p>No fixed schedule</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Health Insurance</h3>
+          <p>Full coverage for you</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Learning Budget</h3>
+          <p>₹1L per year</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L20 7V17L12 22L4 17V7L12 2Z"/></svg>
+          </div>
+          <h3>Equity</h3>
+          <p>ESOP for everyone</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Parental Leave</h3>
+          <p>Fully paid</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Team Retreats</h3>
+          <p>2x per year</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Home Office</h3>
+          <p>₹1L setup budget</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs-section">
+    <div class="jobs-section__header">
+      <h2>Open Positions</h2>
+      <span class="jobs-count-chip" id="jobsCountChip">12 Openings</span>
+    </div>
+    <div class="jobs-filters" id="jobsFilters">
+      <button class="filter-tab active" data-dept="all">All Departments<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="engineering">Engineering<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="product">Product<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="design">Design<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="marketing">Marketing<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="operations">Operations<span class="filter-tab__underline"></span></button>
+      <button class="filter-tab" data-dept="business">Business Dev<span class="filter-tab__underline"></span></button>
+    </div>
+    <div class="jobs-list" id="jobsList"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <svg viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="8" fill="#F5A623"/>
+            <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          MentorMarket
+        </a>
+        <p class="footer__tagline">Connecting professionals with retired industry leaders for personalized mentorship and career growth.</p>
+      </div>
+      <div class="footer__column">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="experts.html">Browse Experts</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="success-stories.html">Success Stories</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>For Experts</h4>
+        <ul>
+          <li><a href="register-expert.html">Become an Expert</a></li>
+          <li><a href="expert-dashboard.html">Expert Dashboard</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="expert-faq.html">Expert FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 MentorMarket. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const jobs = [
+      { id: 1, title: 'Senior Frontend Engineer', department: 'engineering', location: 'Remote', type: 'Full-time', experience: '5–7 years', salary: '₹25L – ₹40L', desc: 'Build the next generation of mentorship tooling. Work on our core web application used by thousands daily.', tags: ['React', 'TypeScript', 'Next.js'] },
+      { id: 2, title: 'Backend Engineer (Node.js)', department: 'engineering', location: 'Remote', type: 'Full-time', experience: '4–6 years', salary: '₹22L – ₹35L', desc: 'Design and scale APIs that power bookings, payments, and real-time messaging.', tags: ['Node.js', 'PostgreSQL', 'AWS'] },
+      { id: 3, title: 'Staff Engineer', department: 'engineering', location: 'Remote', type: 'Full-time', experience: '8+ years', salary: '₹40L – ₹60L', desc: 'Lead technical architecture across the platform. Mentor senior engineers.', tags: ['System Design', 'TypeScript', 'Scaling'] },
+      { id: 4, title: 'Product Manager', department: 'product', location: 'Remote', type: 'Full-time', experience: '3–5 years', salary: '₹20L – ₹30L', desc: 'Define product vision and roadmap. Work closely with founders and engineering.', tags: ['Roadmap', 'User Research', 'Analytics'] },
+      { id: 5, title: 'Senior Product Designer', department: 'design', location: 'Remote', type: 'Full-time', experience: '5–8 years', salary: '₹22L – ₹35L', desc: 'Own end-to-end design process. Build and maintain our design system.', tags: ['Figma', 'UI/UX', 'Design Systems'] },
+      { id: 6, title: 'Growth Marketing Lead', department: 'marketing', location: 'Remote', type: 'Full-time', experience: '4–7 years', salary: '₹18L – ₹28L', desc: 'Own acquisition and retention. Run experiments across channels.', tags: ['Performance Marketing', 'SEO', 'Analytics'] },
+      { id: 7, title: 'Content Writer', department: 'marketing', location: 'Remote', type: 'Full-time', experience: '2–4 years', salary: '₹8L – ₹15L', desc: 'Write blog posts, case studies, and marketing copy that converts.', tags: ['SEO Writing', 'B2B', 'Technical'] },
+      { id: 8, title: 'Customer Success Manager', department: 'operations', location: 'Remote', type: 'Full-time', experience: '3–5 years', salary: '₹12L – ₹20L', desc: 'Onboard new experts and buyers. Build relationships that retain users.', tags: ['Onboarding', 'Retention', 'CRM'] },
+      { id: 9, title: 'Operations Associate', department: 'operations', location: 'Bangalore', type: 'Full-time', experience: '1–3 years', salary: '₹8L – ₹14L', desc: 'Support day-to-day operations. Help scale our processes.', tags: ['Process', 'Coordination', 'Excel'] },
+      { id: 10, title: 'Business Development Manager', department: 'business', location: 'Mumbai', type: 'Full-time', experience: '4–7 years', salary: '₹18L – ₹30L', desc: 'Drive enterprise sales. Close deals with corporate clients.', tags: ['B2B Sales', 'Enterprise', 'Negotiation'] },
+      { id: 11, title: 'Technical Recruiter', department: 'operations', location: 'Remote', type: 'Part-time', experience: '2–4 years', salary: '₹6L – ₹12L', desc: 'Help us hire the best talent. Remote-friendly, flexible hours.', tags: ['Tech Hiring', 'Sourcing', 'ATS'] },
+      { id: 12, title: 'Mobile Developer (React Native)', department: 'engineering', location: 'Remote', type: 'Full-time', experience: '3–5 years', salary: '₹20L – ₹32L', desc: 'Build our mobile app. Work on iOS and Android with React Native.', tags: ['React Native', 'Mobile', 'iOS/Android'] }
+    ];
+
+    let currentDept = 'all';
+    let perksScrollPos = 0;
+    const perkCardWidth = 224;
+
+    function renderJobs() {
+      const list = document.getElementById('jobsList');
+      const filtered = currentDept === 'all' ? jobs : jobs.filter(j => j.department === currentDept);
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <h3>No openings in this department right now</h3>
+            <p>We hire carefully and only when ready. Leave your details and we'll reach out when something opens up.</p>
+            <form class="empty-state__form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll notify you.');">
+              <input type="email" placeholder="Your email" required>
+              <button type="submit" class="btn btn--primary">Notify Me</button>
+            </form>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map(job => `
+        <div class="job-card" onclick="window.location.href='careers-single.html?id=${job.id}'">
+          <div class="job-card__left">
+            <div class="job-card__dept">${job.department}</div>
+            <h3 class="job-card__title">${job.title}</h3>
+            <div class="job-card__meta">
+              <span class="job-card__meta-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                ${job.location}
+              </span>
+              <span class="job-card__meta-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                ${job.type}
+              </span>
+              <span class="job-card__meta-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                ${job.experience}
+              </span>
+            </div>
+            <p class="job-card__desc">${job.desc}</p>
+            <div class="job-card__tags">
+              ${job.tags.map(t => `<span class="job-card__tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="job-card__right">
+            <div class="job-card__salary">${job.salary}</div>
+            <div class="job-card__date">Posted 2 days ago</div>
+            <div class="job-card__actions">
+              <button class="job-card__save-btn" onclick="event.stopPropagation(); this.innerHTML='✓ Saved'" title="Save job">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentDept = tab.dataset.dept;
+        renderJobs();
+        
+        const count = currentDept === 'all' ? jobs.length : jobs.filter(j => j.department === currentDept).length;
+        document.getElementById('jobsCountChip').textContent = `Showing ${count} ${currentDept === 'all' ? 'Openings' : currentDept.charAt(0).toUpperCase() + currentDept.slice(1) + ' Positions'}`;
+      });
+    });
+
+    const perksRow = document.getElementById('perksRow');
+    const perksPrev = document.getElementById('perksPrevBtn');
+    const perksNext = document.getElementById('perksNextBtn');
+
+    function updatePerksButtons() {
+      const maxScroll = perksRow.scrollWidth - perksRow.clientWidth;
+      perksPrev.disabled = perksScrollPos <= 0;
+      perksNext.disabled = perksScrollPos >= maxScroll - 10;
+    }
+
+    perksPrev.addEventListener('click', () => {
+      perksScrollPos = Math.max(0, perksScrollPos - perkCardWidth);
+      perksRow.scrollTo({ left: perksScrollPos, behavior: 'smooth' });
+      setTimeout(updatePerksButtons, 300);
+    });
+
+    perksNext.addEventListener('click', () => {
+      const maxScroll = perksRow.scrollWidth - perksRow.clientWidth;
+      perksScrollPos = Math.min(maxScroll, perksScrollPos + perkCardWidth);
+      perksRow.scrollTo({ left: perksScrollPos, behavior: 'smooth' });
+      setTimeout(updatePerksButtons, 300);
+    });
+
+    renderJobs();
+  </script>
+</body>
+</html>

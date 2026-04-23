@@ -92,6 +92,96 @@ function initCountUp() {
   }
 }
 
+function observeElements(selector, animationClass = 'visible') {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(animationClass);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(selector).forEach(el => {
+    observer.observe(el);
+  });
+  return observer;
+}
+
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+function formatCurrency(amount) {
+  const num = Math.floor(amount);
+  const str = num.toString();
+  let result = '';
+  let count = 0;
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (count > 0 && count % 3 === 0) {
+      result = ',' + result;
+    }
+    result = str[i] + result;
+    count++;
+  }
+
+  return '₹' + result;
+}
+
+let toastQueue = [];
+let isToastActive = false;
+
+function showToast(message, type = 'info') {
+  toastQueue.push({ message, type });
+
+  if (!isToastActive) {
+    processToastQueue();
+  }
+}
+
+function processToastQueue() {
+  if (toastQueue.length === 0) {
+    isToastActive = false;
+    return;
+  }
+
+  isToastActive = true;
+  const { message, type } = toastQueue.shift();
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast--${type}`;
+  toast.innerHTML = `
+    <span class="toast__icon"></span>
+    <span class="toast__message">${message}</span>
+  `;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add('toast--visible');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('toast--visible');
+    setTimeout(() => {
+      toast.remove();
+      processToastQueue();
+    }, 300);
+  }, 2500);
+}
+
+function smoothScrollTo(selector, offset = 80) {
+  const element = document.querySelector(selector);
+  if (element) {
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initScrollIndicator();

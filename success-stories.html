@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Stories — MentorMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/content-pages.css">
+  <style>
+    .stories-hero {
+      background: var(--navy-deep);
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.12) 0%, transparent 70%);
+      padding: 140px 48px 60px;
+      text-align: center;
+    }
+
+    .stories-hero .label-chip {
+      margin-bottom: 20px;
+    }
+
+    .stories-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .stories-hero .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.70);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .stories-hero .impact-numbers {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      margin-bottom: 40px;
+    }
+
+    .stories-hero .impact-number {
+      text-align: center;
+    }
+
+    .stories-hero .impact-number .number {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      display: block;
+    }
+
+    .stories-hero .impact-number .label {
+      font-size: 14px;
+      color: var(--gray-400);
+    }
+
+    .stories-hero .search-bar {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stories-hero .search-bar input {
+      width: 100%;
+      padding: 16px 24px;
+      padding-left: 52px;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: 16px;
+      background: var(--white);
+      color: var(--gray-800);
+    }
+
+    .stories-hero .search-bar input:focus {
+      outline: 2px solid var(--gold-primary);
+      outline-offset: 2px;
+    }
+
+    .stories-hero .search-bar {
+      position: relative;
+    }
+
+    .stories-hero .search-bar svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: var(--gray-400);
+    }
+
+    .filter-bar {
+      background: var(--white);
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      flex: 1;
+      scrollbar-width: none;
+    }
+
+    .filter-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-pill {
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-600);
+      transition: all 200ms ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .filter-pill.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: var(--navy-deep);
+    }
+
+    .filter-bar .sort-dropdown {
+      position: relative;
+    }
+
+    .filter-bar .sort-dropdown select {
+      padding: 10px 36px 10px 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      background: var(--white);
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .filter-bar .sort-dropdown svg {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+
+    .stories-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 48px;
+    }
+
+    .featured-story {
+      grid-column: 1 / -1;
+      background: var(--navy-deep);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      border: 1px solid rgba(245,166,35,0.30);
+      margin-bottom: 48px;
+    }
+
+    .featured-story__image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-story__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+
+    .featured-story:hover .featured-story__image img {
+      transform: scale(1.03);
+    }
+
+    .featured-story__content {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-story__badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--gold-primary);
+      color: var(--navy-deep);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+
+    .featured-story h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .featured-story__excerpt {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.70);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .featured-story__chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .impact-chip {
+      padding: 10px 16px;
+      border: 1px solid var(--white);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      background: transparent;
+    }
+
+    .featured-story__expert {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .featured-story__expert img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .featured-story__expert-name {
+      font-weight: 600;
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .featured-story__expert-domain {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    .featured-story__buyer {
+      font-size: 13px;
+      color: var(--gray-400);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .story-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 300ms var(--ease-spring);
+    }
+
+    .story-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .story-card__image {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms ease;
+    }
+
+    .story-card:hover .story-card__image img {
+      transform: scale(1.04);
+    }
+
+    .story-card__domain-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 12px;
+      background: var(--navy-deep);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .story-card__featured-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px 12px;
+      background: var(--gold-primary);
+      color: var(--navy-deep);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+    }
+
+    .story-card__body {
+      padding: 28px;
+    }
+
+    .story-card__category {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .story-card__category::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold-primary);
+      border-radius: 50%;
+    }
+
+    .story-card__headline {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gray-800);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color 200ms ease;
+    }
+
+    .story-card:hover .story-card__headline {
+      color: var(--gold-primary);
+    }
+
+    .story-card__excerpt {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .story-card__impact-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .story-card__impact-chip {
+      padding: 6px 12px;
+      border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      background: transparent;
+    }
+
+    .story-card__divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin-bottom: 16px;
+    }
+
+    .story-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .story-card__expert {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .story-card__expert img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .story-card__expert-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .story-card__expert-domain {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    .story-card__buyer {
+      font-size: 12px;
+      color: var(--gray-400);
+      font-style: italic;
+    }
+
+    .story-card__read-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-primary);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .story-card__read-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 300ms ease;
+    }
+
+    .story-card:hover .story-card__read-link::after {
+      transform: scaleX(1);
+    }
+
+    .load-more-section {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .load-more-section .count {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    .stories-sidebar {
+      position: sticky;
+      top: 88px;
+      height: fit-content;
+    }
+
+    .sidebar-card {
+      background: var(--navy-deep);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .sidebar-card--white {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+    }
+
+    .sidebar-card--white h3 {
+      color: var(--gray-800);
+    }
+
+    .platform-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .platform-stat {
+      text-align: center;
+    }
+
+    .platform-stat .number {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .platform-stat .label {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
+    .most-read-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .most-read-item {
+      display: flex;
+      gap: 12px;
+      cursor: pointer;
+      transition: opacity 200ms ease;
+    }
+
+    .most-read-item:hover {
+      opacity: 0.8;
+    }
+
+    .most-read-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .most-read-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .most-read-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-700);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .most-read-item-views {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    .submit-story-card {
+      border: 2px solid var(--gold-primary);
+      background: transparent;
+      text-align: center;
+    }
+
+    .submit-story-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(32px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .story-card {
+      opacity: 0;
+      animation: cardEntrance 450ms var(--ease-spring) forwards;
+    }
+
+    @media (max-width: 1200px) {
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stories-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .stories-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stories-hero {
+        padding: 120px 24px 40px;
+      }
+
+      .stories-hero h1 {
+        font-size: 32px;
+      }
+
+      .stories-hero .impact-numbers {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .filter-bar {
+        padding: 16px 24px;
+      }
+
+      .stories-layout {
+        padding: 24px;
+      }
+
+      .featured-story {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-story__image {
+        height: 240px;
+      }
+
+      .featured-story__content {
+        padding: 32px;
+      }
+
+      .featured-story h2 {
+        font-size: 24px;
+      }
+
+      .stories-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="8" fill="#F5A623"/>
+        <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      MentorMarket
+    </a>
+    <ul class="navbar__links">
+      <li><a href="experts.html">Browse Experts</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="success-stories.html">Success Stories</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <a href="login.html" class="btn btn--ghost">Login</a>
+      <a href="register-buyer.html" class="btn btn--primary">Sign Up</a>
+    </div>
+    <button class="navbar__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="experts.html">Browse Experts</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="success-stories.html">Success Stories</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn btn--ghost">Login</a>
+    <a href="register-buyer.html" class="btn btn--primary">Sign Up</a>
+  </div>
+
+  <section class="stories-hero">
+    <span class="label-chip label-chip--gold">REAL RESULTS, REAL PEOPLE</span>
+    <h1>When Experience Meets Opportunity</h1>
+    <p class="hero-subtitle">Every session on MentorMarket is a story. Here are some of the ones our experts and buyers wanted to share.</p>
+    <div class="impact-numbers">
+      <div class="impact-number">
+        <span class="number" data-count="24">₹24 Crore</span>
+        <span class="label">in client value created</span>
+      </div>
+      <div class="impact-number">
+        <span class="number" data-count="340">340+</span>
+        <span class="label">Success Stories</span>
+      </div>
+      <div class="impact-number">
+        <span class="number" data-count="98">98%</span>
+        <span class="label">Would Recommend</span>
+      </div>
+    </div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" placeholder="Search by industry, domain, or challenge (e.g. 'fundraising', 'supply chain', 'hospital management')" id="storiesSearch">
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <div class="filter-pills" id="categoryPills">
+      <button class="filter-pill active" data-category="all">All Stories</button>
+      <button class="filter-pill" data-category="finance">Finance & Fundraising</button>
+      <button class="filter-pill" data-category="operations">Operations</button>
+      <button class="filter-pill" data-category="legal">Legal & Compliance</button>
+      <button class="filter-pill" data-category="healthcare">Healthcare</button>
+      <button class="filter-pill" data-category="technology">Technology</button>
+      <button class="filter-pill" data-category="hr">HR & Culture</button>
+      <button class="filter-pill" data-category="sales">Sales Growth</button>
+      <button class="filter-pill" data-category="supply_chain">Supply Chain</button>
+      <button class="filter-pill" data-category="real_estate">Real Estate</button>
+    </div>
+    <div class="sort-dropdown">
+      <select id="sortSelect">
+        <option value="recent">Most Recent</option>
+        <option value="viewed">Most Viewed</option>
+        <option value="impact">Highest Impact</option>
+        <option value="shared">Most Shared</option>
+      </select>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stories-layout">
+    <div class="stories-main">
+      <div class="featured-story" id="featuredStory">
+        <div class="featured-story__image">
+          <img src="assets/success-stories/featured.jpg" alt="Featured success story" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 500%22><rect fill=%22%23112240%22 width=%22800%22 height=%22500%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2248%22>Featured Story</text></svg>'">
+        </div>
+        <div class="featured-story__content">
+          <span class="featured-story__badge">Featured</span>
+          <h2>How a Retired CFO Helped a Mumbai Startup Raise ₹8 Crore in 60 Days</h2>
+          <p class="featured-story__excerpt">When Priya Sharma's fintech startup needed capital to scale, she didn't know where to turn. Then she connected with Rajesh Kumar, a retired CFO who had led finance at three unicorn startups. His guidance on investor pitch decks and financial modeling changed everything.</p>
+          <div class="featured-story__chips">
+            <span class="impact-chip">₹8 Crore Raised</span>
+            <span class="impact-chip">60 Days</span>
+            <span class="impact-chip">Series A Closed</span>
+          </div>
+          <div class="featured-story__expert">
+            <img src="assets/experts/expert-1.jpg" alt="Rajesh Kumar" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2220%22 cy=%2220%22 r=%2220%22 fill=%22%23F5A623%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%230A1628%22 font-size=%2216%22>RK</text></svg>'">
+            <div>
+              <div class="featured-story__expert-name">Rajesh Kumar</div>
+              <div class="featured-story__expert-domain">Finance & Fundraising</div>
+            </div>
+          </div>
+          <div class="featured-story__buyer">PayFlow Technologies</div>
+          <a href="#" class="btn btn--primary">Read the Full Story</a>
+        </div>
+      </div>
+
+      <div class="stories-grid" id="storiesGrid"></div>
+
+      <div class="load-more-section">
+        <p class="count" id="storiesCount">Showing 9 of 47 stories</p>
+        <button class="btn btn--ghost" id="loadMoreBtn" style="width: 240px;">Load More Stories</button>
+      </div>
+    </div>
+
+    <aside class="stories-sidebar">
+      <div class="sidebar-card">
+        <h3>By the Numbers</h3>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <div class="number">₹200+ Cr</div>
+            <div class="label">Value Created</div>
+          </div>
+          <div class="platform-stat">
+            <div class="number">₹15 Cr</div>
+            <div class="label">Expert Earnings</div>
+          </div>
+          <div class="platform-stat">
+            <div class="number">10</div>
+            <div class="label">Domains</div>
+          </div>
+          <div class="platform-stat">
+            <div class="number">2,400+</div>
+            <div class="label">Sessions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card sidebar-card--white">
+        <h3>Most Read This Month</h3>
+        <div class="most-read-list" id="mostReadList"></div>
+      </div>
+
+      <div class="sidebar-card submit-story-card">
+        <h3>Did MentorMarket help your business?</h3>
+        <p>Share your success story and inspire other entrepreneurs on their journey.</p>
+        <a href="#" class="btn btn--primary">Share Your Story</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <svg viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="8" fill="#F5A623"/>
+            <path d="M10 18L15 23L26 12" stroke="#0A1628" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          MentorMarket
+        </a>
+        <p class="footer__tagline">Connecting professionals with retired industry leaders for personalized mentorship and career growth.</p>
+      </div>
+      <div class="footer__column">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="experts.html">Browse Experts</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="success-stories.html">Success Stories</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>For Experts</h4>
+        <ul>
+          <li><a href="register-expert.html">Become an Expert</a></li>
+          <li><a href="expert-dashboard.html">Expert Dashboard</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="expert-faq.html">Expert FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 MentorMarket. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/content-pages.js"></script>
+</body>
+</html>
