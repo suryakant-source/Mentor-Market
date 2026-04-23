@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up as Buyer — MentorMarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    .auth-form-container.narrow {
+      max-width: 480px;
+    }
+
+    .company-stage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .company-stage-card {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 200ms var(--ease-out);
+      background: var(--white);
+    }
+
+    .company-stage-card:nth-child(5) {
+      grid-column: 2;
+    }
+
+    .company-stage-card:hover {
+      border-color: var(--gold-primary);
+      background: var(--gold-pale);
+    }
+
+    .company-stage-card.active {
+      border-color: var(--gold-primary);
+      background: var(--gold-pale);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .company-stage-card__icon {
+      width: 32px;
+      height: 32px;
+      color: var(--gray-400);
+      margin: 0 auto 8px;
+      transition: color 200ms;
+    }
+
+    .company-stage-card.active .company-stage-card__icon,
+    .company-stage-card:hover .company-stage-card__icon {
+      color: var(--gold-primary);
+    }
+
+    .company-stage-card__label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .terms-checkbox input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--gold-primary);
+    }
+
+    .terms-checkbox span {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .terms-checkbox a {
+      color: var(--gold-primary);
+      text-decoration: underline;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .social-login__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all 200ms;
+    }
+
+    .social-login__btn:hover {
+      border-color: var(--gray-400);
+      background: var(--gray-100);
+    }
+
+    .social-login__btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: var(--gray-200);
+    }
+
+    .divider__text {
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    @media (max-width: 480px) {
+      .company-stage-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .company-stage-card:nth-child(5) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-page__brand">
+      <div class="auth-page__brand-content">
+        <div class="auth-page__brand-logo">
+          <svg viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="10" fill="#F5A623"/>
+            <path d="M14 24L20 30L34 16" stroke="#0A1628" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          MentorMarket
+        </div>
+        <h2>Find the Right Expert in Under 5 Minutes</h2>
+        <p>Connect with retired industry leaders who've built what you're building. Get personalized guidance from those who've walked the path before.</p>
+        <div class="auth-page__trust-list">
+          <div class="auth-page__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            300+ verified experts available
+          </div>
+          <div class="auth-page__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            4.9 average expert rating
+          </div>
+          <div class="auth-page__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Secure payment processing
+          </div>
+          <div class="auth-page__trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Sessions recorded for review
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-page__form-side">
+      <div class="auth-form-container narrow">
+        <h1>Create Your Account</h1>
+        <p>Already have an account? <a href="login.html" class="form-link">Sign in</a></p>
+
+        <div class="social-login">
+          <button class="social-login__btn" type="button">
+            <svg viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Continue with Google
+          </button>
+          <button class="social-login__btn" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Continue with LinkedIn
+          </button>
+        </div>
+
+        <div class="divider">
+          <span class="divider__line"></span>
+          <span class="divider__text">or continue with email</span>
+          <span class="divider__line"></span>
+        </div>
+
+        <form id="buyerForm">
+          <div class="form-row">
+            <div class="form-group" id="firstName-group">
+              <label>First Name <span class="required">*</span></label>
+              <div class="form-input-wrapper">
+                <input type="text" id="firstName" class="form-input" placeholder="Marcus">
+              </div>
+            </div>
+            <div class="form-group" id="lastName-group">
+              <label>Last Name <span class="required">*</span></label>
+              <div class="form-input-wrapper">
+                <input type="text" id="lastName" class="form-input" placeholder="Webb">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="email-group">
+            <label>Work Email <span class="required">*</span></label>
+            <div class="form-input-wrapper">
+              <input type="email" id="email" class="form-input" placeholder="marcus@company.com">
+            </div>
+          </div>
+
+          <div class="form-group" id="password-group">
+            <label>Password <span class="required">*</span></label>
+            <div class="form-input-wrapper">
+              <input type="password" id="password" class="form-input" placeholder="Minimum 8 characters">
+            </div>
+            <div class="password-strength">
+              <div class="password-strength__bars">
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+              </div>
+              <span class="password-strength__label"></span>
+            </div>
+          </div>
+
+          <div class="form-group" id="company-group">
+            <label>Company Name</label>
+            <div class="form-input-wrapper">
+              <input type="text" id="company" class="form-input" placeholder="Your Company Inc.">
+            </div>
+          </div>
+
+          <div class="form-group" id="stage-group">
+            <label>Company Stage</label>
+            <div class="company-stage-grid">
+              <div class="company-stage-card" data-stage="pre-seed">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                <div class="company-stage-card__label">Pre-Seed</div>
+              </div>
+              <div class="company-stage-card" data-stage="seed">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <div class="company-stage-card__label">Seed</div>
+              </div>
+              <div class="company-stage-card" data-stage="series-ab">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+                <div class="company-stage-card__label">Series A/B</div>
+              </div>
+              <div class="company-stage-card" data-stage="smb">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <div class="company-stage-card__label">SMB</div>
+              </div>
+              <div class="company-stage-card" data-stage="enterprise">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                </svg>
+                <div class="company-stage-card__label">Enterprise</div>
+              </div>
+              <div class="company-stage-card" data-stage="individual">
+                <svg class="company-stage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <div class="company-stage-card__label">Individual</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="terms-checkbox">
+            <input type="checkbox" id="terms">
+            <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></span>
+          </div>
+
+          <button type="submit" class="btn btn--primary" style="width: 100%; height: 52px; font-size: 16px; box-shadow: var(--shadow-gold);">
+            Create Account
+          </button>
+        </form>
+
+        <p style="font-size: 13px; color: var(--gray-500); text-align: center; margin-top: 24px;">
+          By signing up, you agree to our platform's commitment to your privacy and data security.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    const formData = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      company: '',
+      stage: ''
+    };
+
+    function initBuyerForm() {
+      const fields = ['firstName', 'lastName', 'email', 'password', 'company'];
+      fields.forEach(field => {
+        const input = document.getElementById(field);
+        if (!input) return;
+        input.addEventListener('input', () => {
+          formData[field] = input.value;
+          clearError(field);
+          if (field === 'password') updatePasswordStrength(input.value);
+        });
+        input.addEventListener('blur', () => {
+          if (formData[field]) input.classList.add('success');
+        });
+      });
+
+      document.querySelectorAll('.company-stage-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.company-stage-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          formData.stage = card.dataset.stage;
+          clearError('stage');
+        });
+      });
+
+      document.getElementById('buyerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        if (!formData.firstName.trim()) { showError('firstName', 'First name is required'); valid = false; }
+        if (!formData.lastName.trim()) { showError('lastName', 'Last name is required'); valid = false; }
+        if (!formData.email.trim()) { showError('email', 'Email is required'); valid = false; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { showError('email', 'Please enter a valid email'); valid = false; }
+        if (!formData.password || formData.password.length < 8) { showError('password', 'Password must be at least 8 characters'); valid = false; }
+        if (!document.getElementById('terms').checked) { alert('Please agree to the Terms of Service'); valid = false; }
+
+        if (!valid) {
+          const btn = e.target.querySelector('button[type="submit"]');
+          btn.classList.add('shake');
+          setTimeout(() => btn.classList.remove('shake'), 400);
+          return;
+        }
+
+        window.location.href = 'experts.html';
+      });
+    }
+
+    function showError(fieldId, message) {
+      const wrapper = document.getElementById(`${fieldId}-group`);
+      if (!wrapper) return;
+      let errorEl = wrapper.querySelector('.form-error');
+      if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'form-error visible';
+        errorEl.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>${message}</span>`;
+        wrapper.appendChild(errorEl);
+      } else {
+        errorEl.querySelector('span').textContent = message;
+        errorEl.classList.add('visible');
+      }
+      const input = wrapper.querySelector('.form-input');
+      if (input) input.classList.add('error');
+    }
+
+    function clearError(fieldId) {
+      const wrapper = document.getElementById(`${fieldId}-group`);
+      if (!wrapper) return;
+      const errorEl = wrapper.querySelector('.form-error');
+      if (errorEl) errorEl.classList.remove('visible');
+      const input = wrapper.querySelector('.form-input');
+      if (input) input.classList.remove('error');
+    }
+
+    document.addEventListener('DOMContentLoaded', initBuyerForm);
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Installers
+*.msi
+*.exe
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/

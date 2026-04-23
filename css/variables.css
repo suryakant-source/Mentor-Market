@@ -1,0 +1,72 @@
+:root {
+  /* Color System */
+  --navy-deep: #0A1628;
+  --navy-mid: #112240;
+  --navy-light: #1a3a5c;
+  --gold-primary: #F5A623;
+  --gold-light: #FFB84D;
+  --gold-pale: #FFF3DC;
+  --cream: #FAFAF8;
+  --white: #FFFFFF;
+  --gray-100: #F4F4F4;
+  --gray-200: #E8E8E8;
+  --gray-400: #9CA3AF;
+  --gray-600: #4A5568;
+  --gray-800: #1F2937;
+  --green-success: #2D9B5E;
+  --red-error: #E53E3E;
+  --blue-info: #3B82F6;
+
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 40px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+  --space-5xl: 80px;
+  --space-6xl: 96px;
+  --space-7xl: 120px;
+  --space-8xl: 160px;
+
+  /* Shadow System */
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.14);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.18);
+  --shadow-gold: 0 8px 32px rgba(245,166,35,0.25);
+  --shadow-inset: inset 0 2px 8px rgba(0,0,0,0.06);
+
+  /* Border Radius Scale */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Animation System */
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+  --dur-xslow: 600ms;
+  --dur-page: 800ms;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Z-Index Scale */
+  --z-navbar: 1000;
+  --z-overlay: 1;
+  --z-content: 2;
+  --z-modal: 1100;
+}
