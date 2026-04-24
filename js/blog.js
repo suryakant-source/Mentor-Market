@@ -102,9 +102,14 @@ function renderBlogPosts() {
 
   if (visible.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 64px 24px;">
-        <p style="font-size: 18px; color: var(--gray-600);">No articles found matching your search.</p>
-        <button class="btn btn--primary" style="margin-top: 16px;" onclick="location.reload()">Clear Search</button>
+      <div class="empty-state">
+        <svg class="empty-state__icon" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="50" stroke="#D1D8E0" stroke-width="2" stroke-dasharray="8 4"/>
+          <path d="M40 50h40M40 60h40M40 70h25" stroke="#8A95A5" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>We couldn't find anything matching that search</h3>
+        <p>Try different keywords, clear filters, or browse all articles.</p>
+        <button class="btn btn--primary" onclick="document.getElementById('blogSearch').value=''; filterBlogPosts();">Clear Search</button>
       </div>
     `;
     document.getElementById('blogLoadMoreBtn').style.display = 'none';
@@ -115,7 +120,7 @@ function renderBlogPosts() {
   grid.innerHTML = visible.map((post, i) => `
     <article class="blog-card" data-stagger style="animation-delay: ${i * 80}ms">
       <div class="blog-card__image">
-        <img src="${post.image}" alt="${post.title}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 220%22><rect fill=%22%23E8ECF0%22 width=%22400%22 height=%22220%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2224%22>Article</text></svg>'">
+        <img src="${post.image}" alt="${post.title}" width="400" height="220" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 220%22><rect fill=%22%23E8ECF0%22 width=%22400%22 height=%22220%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2224%22>Article</text></svg>'">
         <span class="blog-card__category">${post.category}</span>
       </div>
       <div class="blog-card__body">
@@ -123,7 +128,7 @@ function renderBlogPosts() {
         <p class="blog-card__excerpt">${post.excerpt}</p>
         <div class="blog-card__footer">
           <div class="blog-card__author">
-            <img src="${post.authorImage}" alt="${post.author}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23F5A623%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%230A1628%22 font-size=%2212%22>${post.author.charAt(0)}</text></svg>'">
+            <img src="${post.authorImage}" alt="${post.author}" width="32" height="32" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23F5A623%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%230A1628%22 font-size=%2212%22>${post.author.charAt(0)}</text></svg>'">
             <span class="blog-card__author-name">${post.author}</span>
           </div>
           <div class="blog-card__meta">

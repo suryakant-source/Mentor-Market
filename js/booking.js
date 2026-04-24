@@ -4,12 +4,12 @@ const expert = {
   title: 'Former VP at Goldman Sachs',
   domain: 'Finance',
   rating: 4.9,
-  rate: 350
+  rate: 29000
 };
 
 const sessionTypes = [
-  { id: 'hourly', label: 'Hourly Call', rate: 350, desc: 'Perfect for quick questions and follow-ups', duration: '1 hour' },
-  { id: 'monthly', label: 'Monthly Retainer', rate: 1800, desc: 'Ongoing support with monthly calls', duration: '4 sessions/mo' },
+  { id: 'hourly', label: 'Hourly Call', rate: 29000, desc: 'Perfect for quick questions and follow-ups', duration: '1 hour' },
+  { id: 'monthly', label: 'Monthly Retainer', rate: 150000, desc: 'Ongoing support with monthly calls', duration: '4 sessions/mo' },
   { id: 'project', label: 'Scoped Project', rate: 0, desc: 'Custom engagement for specific goals', duration: 'Custom scope' }
 ];
 
@@ -33,7 +33,7 @@ function renderExpertBanner() {
   if (!banner) return;
 
   banner.innerHTML = `
-    <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="expert-banner__photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2220%22>SC</text></svg>'">
+    <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="expert-banner__photo" width="48" height="48" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2220%22>SC</text></svg>'">
     <div class="expert-banner__info">
       <div class="expert-banner__name">${expert.name}</div>
       <div class="expert-banner__meta">
@@ -88,7 +88,7 @@ function renderOrderSummary() {
   summary.innerHTML = `
     <h3>Order Summary</h3>
     <div class="order-summary__expert">
-      <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="order-summary__expert-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 56 56%22><circle cx=%2228%22 cy=%2228%22 r=%2228%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>SC</text></svg>'">
+      <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="order-summary__expert-photo" width="56" height="56" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 56 56%22><circle cx=%2228%22 cy=%2228%22 r=%2228%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>SC</text></svg>'">
       <div class="order-summary__expert-info">
         <h4>${expert.name}</h4>
         <p>
@@ -106,7 +106,7 @@ function renderOrderSummary() {
     </div>
     <div class="order-line">
       <span>${type.id === 'project' ? 'Project Rate' : 'Rate'}</span>
-      <span>${type.rate > 0 ? '$' + type.rate : 'TBD'}</span>
+      <span>${type.rate > 0 ? formatINR(type.rate) : 'TBD'}</span>
     </div>
     <div class="order-line">
       <span>Duration</span>
@@ -296,7 +296,7 @@ function renderOrderSummary() {
   summary.innerHTML = `
     <h3>Order Summary</h3>
     <div class="order-summary__expert">
-      <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="order-summary__expert-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 56 56%22><circle cx=%2228%22 cy=%2228%22 r=%2228%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>SC</text></svg>'">
+      <img src="assets/experts/expert-1.jpg" alt="${expert.name}" class="order-summary__expert-photo" width="56" height="56" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 56 56%22><circle cx=%2228%22 cy=%2228%22 r=%2228%22 fill=%22%23112240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>SC</text></svg>'">
       <div class="order-summary__expert-info">
         <h4>${expert.name}</h4>
         <p>
@@ -314,7 +314,7 @@ function renderOrderSummary() {
     </div>
     <div class="order-line">
       <span>${type.id === 'project' ? 'Project Rate' : 'Rate'}</span>
-      <span class="order-price" data-price="rate">${type.rate > 0 ? '$' + type.rate : 'TBD'}</span>
+      <span class="order-price" data-price="rate">${type.rate > 0 ? formatINR(type.rate) : 'TBD'}</span>
     </div>
     <div class="order-line">
       <span>Duration</span>
@@ -335,11 +335,11 @@ function renderOrderSummary() {
           </span>
         </span>
       </span>
-      <span class="order-price" data-price="fee">$${platformFee}</span>
+      <span class="order-price" data-price="fee">${formatINR(platformFee)}</span>
     </div>
     <div class="order-line order-line--total">
       <span>Total</span>
-      <span class="order-price" data-price="total">$${total}</span>
+      <span class="order-price" data-price="total">${formatINR(total)}</span>
     </div>
     ` : ''}
     <div class="razorpay-badge">

@@ -5,18 +5,18 @@ const pendingApplications = [
 ];
 
 const allSessions = [
-  { id: 1, expert: 'Dr. Sarah Chen', expertPhoto: 'assets/experts/expert-1.jpg', buyer: 'Marcus Webb', buyerPhoto: 'assets/testimonials/buyer-1.jpg', domain: 'Finance', date: 'Apr 28, 2026', time: '10:00 AM', type: '1 Hour', amount: 350, status: 'confirmed' },
-  { id: 2, expert: 'Dr. Sarah Chen', expertPhoto: 'assets/experts/expert-1.jpg', buyer: 'Priya Sharma', buyerPhoto: 'assets/testimonials/buyer-2.jpg', domain: 'Finance', date: 'Apr 28, 2026', time: '2:00 PM', type: '30 Min', amount: 175, status: 'confirmed' },
-  { id: 3, expert: 'Jennifer Walsh', expertPhoto: 'assets/experts/expert-3.jpg', buyer: 'James Liu', buyerPhoto: 'assets/testimonials/buyer-3.jpg', domain: 'Operations', date: 'Apr 22, 2026', time: '11:00 AM', type: '1 Hour', amount: 380, status: 'completed' },
-  { id: 4, expert: 'Michael Roberts', expertPhoto: 'assets/experts/expert-2.jpg', buyer: 'Elena Rodriguez', buyerPhoto: 'assets/testimonials/buyer-1.jpg', domain: 'Legal', date: 'Apr 15, 2026', time: '3:00 PM', type: '90 Min', amount: 400, status: 'completed' },
-  { id: 5, expert: 'Amanda Foster', expertPhoto: 'assets/experts/expert-5.jpg', buyer: 'Robert Kim', buyerPhoto: 'assets/testimonials/buyer-2.jpg', domain: 'Technology', date: 'Apr 8, 2026', time: '10:00 AM', type: '1 Hour', amount: 420, status: 'cancelled' }
+  { id: 1, expert: 'Dr. Sarah Chen', expertPhoto: 'assets/experts/expert-1.jpg', buyer: 'Marcus Webb', buyerPhoto: 'assets/testimonials/buyer-1.jpg', domain: 'Finance', date: 'Apr 28, 2026', time: '10:00 AM', type: '1 Hour', amount: 29000, status: 'confirmed' },
+  { id: 2, expert: 'Dr. Sarah Chen', expertPhoto: 'assets/experts/expert-1.jpg', buyer: 'Priya Sharma', buyerPhoto: 'assets/testimonials/buyer-2.jpg', domain: 'Finance', date: 'Apr 28, 2026', time: '2:00 PM', type: '30 Min', amount: 14500, status: 'confirmed' },
+  { id: 3, expert: 'Jennifer Walsh', expertPhoto: 'assets/experts/expert-3.jpg', buyer: 'James Liu', buyerPhoto: 'assets/testimonials/buyer-3.jpg', domain: 'Operations', date: 'Apr 22, 2026', time: '11:00 AM', type: '1 Hour', amount: 32000, status: 'completed' },
+  { id: 4, expert: 'Michael Roberts', expertPhoto: 'assets/experts/expert-2.jpg', buyer: 'Elena Rodriguez', buyerPhoto: 'assets/testimonials/buyer-1.jpg', domain: 'Legal', date: 'Apr 15, 2026', time: '3:00 PM', type: '90 Min', amount: 33000, status: 'completed' },
+  { id: 5, expert: 'Amanda Foster', expertPhoto: 'assets/experts/expert-5.jpg', buyer: 'Robert Kim', buyerPhoto: 'assets/testimonials/buyer-2.jpg', domain: 'Technology', date: 'Apr 8, 2026', time: '10:00 AM', type: '1 Hour', amount: 35000, status: 'cancelled' }
 ];
 
 const platformStats = {
-  totalGMV: 892400,
-  totalRevenue: 196328,
-  thisMonthRevenue: 42800,
-  monthlyRevenue: [28500, 31200, 35800, 29400, 38200, 42800]
+  totalGMV: 74200000,
+  totalRevenue: 16324000,
+  thisMonthRevenue: 3550000,
+  monthlyRevenue: [2370000, 2600000, 2980000, 2450000, 3180000, 3550000]
 };
 
 let currentAdminTab = 'pending';
@@ -233,7 +233,7 @@ function renderEarnings() {
   const months = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
   const maxRevenue = Math.max(...platformStats.monthlyRevenue);
 
-  document.getElementById('total-gmv').textContent = '$' + platformStats.totalGMV.toLocaleString();
+  document.getElementById('total-gmv').textContent = formatINR(platformStats.totalGMV);
   document.getElementById('total-revenue').textContent = '$' + platformStats.totalRevenue.toLocaleString();
   document.getElementById('month-revenue').textContent = '$' + platformStats.thisMonthRevenue.toLocaleString();
 

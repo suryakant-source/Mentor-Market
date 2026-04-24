@@ -5,21 +5,21 @@ const expertData = {
   status: 'pending',
   profileCompleteness: 72,
   earnings: {
-    thisMonth: 2100,
-    allTime: 28400,
-    pending: 700
+    thisMonth: 175000,
+    allTime: 2358000,
+    pending: 58000
   },
-  monthlyEarnings: [1800, 2400, 3200, 2800, 3600, 2100],
+  monthlyEarnings: [150000, 200000, 265000, 232000, 299000, 175000],
   todaySessions: [
     { id: 1, buyer: 'Marcus Webb', buyerPhoto: 'assets/testimonials/buyer-1.jpg', time: '10:00 AM', duration: '1 hour' },
     { id: 2, buyer: 'Priya Sharma', buyerPhoto: 'assets/testimonials/buyer-2.jpg', time: '2:00 PM', duration: '30 min' }
   ],
   sessions: [
-    { id: 1, buyer: 'Marcus Webb', buyerPhoto: 'assets/testimonials/buyer-1.jpg', date: 'Apr 28, 2026', time: '10:00 AM', type: '1 Hour Session', amount: 350, status: 'confirmed' },
-    { id: 2, buyer: 'Priya Sharma', buyerPhoto: 'assets/testimonials/buyer-2.jpg', date: 'Apr 28, 2026', time: '2:00 PM', type: '30 Min Session', amount: 175, status: 'confirmed' },
-    { id: 3, buyer: 'James Liu', buyerPhoto: 'assets/testimonials/buyer-3.jpg', date: 'Apr 22, 2026', time: '11:00 AM', type: '1 Hour Session', amount: 350, status: 'completed' },
-    { id: 4, buyer: 'Elena Rodriguez', buyerPhoto: 'assets/testimonials/buyer-1.jpg', date: 'Apr 15, 2026', time: '3:00 PM', type: '90 Min Session', amount: 500, status: 'completed' },
-    { id: 5, buyer: 'Robert Kim', buyerPhoto: 'assets/testimonials/buyer-2.jpg', date: 'Apr 8, 2026', time: '10:00 AM', type: '1 Hour Session', amount: 350, status: 'completed' }
+    { id: 1, buyer: 'Marcus Webb', buyerPhoto: 'assets/testimonials/buyer-1.jpg', date: 'Apr 28, 2026', time: '10:00 AM', type: '1 Hour Session', amount: 29000, status: 'confirmed' },
+    { id: 2, buyer: 'Priya Sharma', buyerPhoto: 'assets/testimonials/buyer-2.jpg', date: 'Apr 28, 2026', time: '2:00 PM', type: '30 Min Session', amount: 14500, status: 'confirmed' },
+    { id: 3, buyer: 'James Liu', buyerPhoto: 'assets/testimonials/buyer-3.jpg', date: 'Apr 22, 2026', time: '11:00 AM', type: '1 Hour Session', amount: 29000, status: 'completed' },
+    { id: 4, buyer: 'Elena Rodriguez', buyerPhoto: 'assets/experts/expert-1.jpg', date: 'Apr 15, 2026', time: '3:00 PM', type: '90 Min Session', amount: 42000, status: 'completed' },
+    { id: 5, buyer: 'Robert Kim', buyerPhoto: 'assets/testimonials/buyer-2.jpg', date: 'Apr 8, 2026', time: '10:00 AM', type: '1 Hour Session', amount: 29000, status: 'completed' }
   ]
 };
 
@@ -191,7 +191,7 @@ function renderOverview() {
       </div>
       ${expertData.todaySessions.map(session => `
         <div class="today-session-row">
-          <img src="${session.buyerPhoto}" alt="${session.buyer}" class="today-session-row__photo">
+          <img src="${session.buyerPhoto}" alt="${session.buyer}" class="today-session-row__photo" width="40" height="40">
           <div class="today-session-row__info">
             <div class="today-session-row__name">${session.buyer}</div>
             <div class="today-session-row__meta">${session.time} · ${session.duration}</div>
@@ -242,7 +242,7 @@ function renderOverview() {
       <div class="earnings-preview-card">
         <h3>This Month's Earnings</h3>
         <div class="earnings-preview__amount">
-          <span class="currency">$</span>${expertData.earnings.thisMonth.toLocaleString()}
+          <span class="currency">₹</span>${formatINR(expertData.earnings.thisMonth)}
         </div>
         <p class="earnings-preview__subtitle">${expertData.sessions.filter(s => s.status === 'completed').length} sessions completed</p>
         <a href="#" class="btn btn--secondary" style="margin-top: 16px; width: 100%;" data-action="view-earnings">View Earnings Dashboard</a>
@@ -296,7 +296,7 @@ function renderOverview() {
       </div>
       ${expertData.sessions.filter(s => s.status !== 'completed').map(session => `
         <div class="session-row">
-          <img src="${session.buyerPhoto}" alt="${session.buyer}" class="session-row__photo">
+          <img src="${session.buyerPhoto}" alt="${session.buyer}" class="session-row__photo" width="40" height="40">
           <div class="session-row__info">
             <div class="session-row__name">${session.buyer}</div>
             <div class="session-row__meta">${session.time}</div>
@@ -337,7 +337,7 @@ function renderEarnings() {
           </svg>
         </div>
         <div class="stat-card__content">
-          <h4>$${expertData.earnings.thisMonth.toLocaleString()}</h4>
+          <h4>${formatINR(expertData.earnings.thisMonth)}</h4>
           <p>This Month</p>
         </div>
       </div>
@@ -348,7 +348,7 @@ function renderEarnings() {
           </svg>
         </div>
         <div class="stat-card__content">
-          <h4>$${expertData.earnings.allTime.toLocaleString()}</h4>
+          <h4>${formatINR(expertData.earnings.allTime)}</h4>
           <p>All Time</p>
         </div>
       </div>
@@ -360,7 +360,7 @@ function renderEarnings() {
           </svg>
         </div>
         <div class="stat-card__content">
-          <h4>$${expertData.earnings.pending.toLocaleString()}</h4>
+          <h4>${formatINR(expertData.earnings.pending)}</h4>
           <p>Pending Payout</p>
         </div>
       </div>
@@ -376,7 +376,7 @@ function renderEarnings() {
           ${expertData.monthlyEarnings.map((earning, i) => `
             <div class="earnings-bar-wrap">
               <div class="earnings-bar" data-earning="${earning}" style="height: 0;">
-                <span class="earnings-bar__tooltip">$${earning.toLocaleString()}</span>
+                <span class="earnings-bar__tooltip">${formatINR(earning)}</span>
               </div>
               <span class="earnings-bar__label">${months[i]}</span>
             </div>
@@ -390,7 +390,7 @@ function renderEarnings() {
         <h3>Next Payout</h3>
       </div>
       <div class="payout-card__amount">
-        <span class="currency">$</span>${expertData.earnings.pending.toLocaleString()}
+        <span class="currency">₹</span>${formatINR(expertData.earnings.pending)}
       </div>
       <p class="payout-card__date">Scheduled for May 1, 2026</p>
       <button class="btn btn--primary" style="margin-top: 16px;">Manage Payout Settings</button>

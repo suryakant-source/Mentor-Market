@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>MentorMarket</display-name>
+    <description>MentorMarket — Connect with retired industry experts</description>
+
+    <!-- ============================================================ -->
+    <!-- Context Parameters                                           -->
+    <!-- ============================================================ -->
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>messages</param-value>
+    </context-param>
+
+    <!-- ============================================================ -->
+    <!-- Servlet Definitions                                          -->
+    <!-- ============================================================ -->
+
+    <!-- Login Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <!-- Register Buyer Servlet -->
+    <servlet>
+        <servlet-name>RegisterBuyerServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.RegisterBuyerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterBuyerServlet</servlet-name>
+        <url-pattern>/register-buyer</url-pattern>
+    </servlet-mapping>
+
+    <!-- Register Expert Servlet -->
+    <servlet>
+        <servlet-name>RegisterExpertServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.RegisterExpertServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size>         <!-- 5MB -->
+            <max-request-size>10485760</max-request-size>  <!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold> <!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterExpertServlet</servlet-name>
+        <url-pattern>/register-expert</url-pattern>
+    </servlet-mapping>
+
+    <!-- Book Session Servlet -->
+    <servlet>
+        <servlet-name>BookSessionServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.BookSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookSessionServlet</servlet-name>
+        <url-pattern>/book-session</url-pattern>
+    </servlet-mapping>
+
+    <!-- Contact Servlet -->
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.ContactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+
+    <!-- Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.mentormarket.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- ============================================================ -->
+    <!-- Session Configuration                                        -->
+    <!-- ============================================================ -->
+    <session-config>
+        <session-timeout>30</session-timeout> <!-- 30 minutes -->
+    </session-config>
+
+    <!-- ============================================================ -->
+    <!-- Welcome File List                                            -->
+    <!-- ============================================================ -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- ============================================================ -->
+    <!-- Error Pages                                                  -->
+    <!-- ============================================================ -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error-404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error-500.jsp</location>
+    </error-page>
+
+</web-app>

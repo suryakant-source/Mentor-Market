@@ -8,25 +8,25 @@ const expertData = {
   reviews: 127,
   sessions: 340,
   responseTime: '4 hours',
-  rate: 350,
+  rate: 29000,
   linkedin: 'https://linkedin.com',
   bio: `With over 25 years of experience at Goldman Sachs, I've guided Fortune 500 companies through complex mergers and acquisitions, strategic restructuring, and capital markets transactions. My expertise spans corporate finance, private equity advisory, and international market expansion strategies.
 
-I've led transactions worth over $2 billion across Asia-Pacific markets and have deep experience working with startups transitioning through Series A to pre-IPO stages. My mentorship philosophy centers on practical, actionable guidance that combines theoretical frameworks with real-world implementation experience.
+I've led transactions worth over ₹16,600 Crore across Asia-Pacific markets and have deep experience working with startups transitioning through Series A to pre-IPO stages. My mentorship philosophy centers on practical, actionable guidance that combines theoretical frameworks with real-world implementation experience.
 
 Beyond transaction work, I'm passionate about helping the next generation of finance professionals navigate career transitions, build financial acumen, and develop the strategic thinking skills that separate good analysts from great executives. Whether you're raising capital for the first time or managing a complex portfolio, I bring a wealth of institutional knowledge that simply isn't available through textbooks or online courses.`,
   highlights: [
     'Led ₹400 Cr cost reduction initiative across 12,000-person enterprise',
-    'Structured $1.2B merger between regional banking institutions',
-    'Built fintech advisory practice generating $50M annual revenue',
+    'Structured ₹10,000 Cr merger between regional banking institutions',
+    'Built fintech advisory practice generating ₹415 Cr annual revenue',
     'Mentored 50+ professionals through CFA and MBA programs',
     'Speaker at World Economic Forum on emerging market strategies'
   ],
   tags: ['M&A Advisory', 'Corporate Restructuring', 'Private Equity', 'IPO Preparation', 'Risk Management', 'Capital Markets', 'Financial Modeling', 'Venture Capital'],
   sessionTypes: [
-    { id: '30min', label: '30 Min Session', desc: 'Quick consultation', price: 175 },
-    { id: '60min', label: '1 Hour Session', desc: 'Deep dive discussion', price: 350 },
-    { id: '90min', label: '90 Min Session', desc: 'Comprehensive strategy', price: 500 }
+    { id: '30min', label: '30 Min Session', desc: 'Quick consultation', price: 14500 },
+    { id: '60min', label: '1 Hour Session', desc: 'Deep dive discussion', price: 29000 },
+    { id: '90min', label: '90 Min Session', desc: 'Comprehensive strategy', price: 42000 }
   ],
   reviewsData: [
     { name: 'Marcus Webb', company: 'Startup Founder, Austin TX', date: 'Dec 15, 2025', rating: 5, text: 'Working with Dr. Chen transformed how I think about investment strategy. Her insights from Goldman Sachs gave me the confidence to make my first major portfolio move. The ROI on these sessions has been incredible.' },
@@ -63,7 +63,7 @@ function renderIdentityPanel() {
 
   panel.innerHTML = `
     <div class="identity-panel__photo-wrap">
-      <img src="${expertData.image || 'assets/experts/expert-1.jpg'}" alt="${expertData.name}" class="identity-panel__photo">
+      <img src="${expertData.image || 'assets/experts/expert-1.jpg'}" alt="${expertData.name}" class="identity-panel__photo" width="120" height="120">
     </div>
     <h2 class="identity-panel__name">${expertData.name}</h2>
     <span class="identity-panel__domain">${expertData.domain}</span>
@@ -154,7 +154,7 @@ function renderContentPanel() {
             </svg>
             <div class="session-type-card__label">${type.label}</div>
             <div class="session-type-card__desc">${type.desc}</div>
-            <div class="session-type-card__price">$${type.price}</div>
+            <div class="session-type-card__price">${formatINR(type.price)}</div>
             <span class="session-type-card__select">Select</span>
           </div>
         `).join('')}
@@ -197,7 +197,7 @@ function renderContentPanel() {
         ${expertData.reviewsData.slice(0, 4).map((review, i) => `
           <div class="review-card ${i >= 4 ? 'hidden-review' : ''}">
             <div class="review-card__header">
-              <img src="assets/testimonials/buyer-${(i % 3) + 1}.jpg" alt="${review.name}" class="review-card__photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2220%22 cy=%2220%22 r=%2220%22 fill=%22%23E8E8E8%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2216%22>${review.name.charAt(0)}</text></svg>'">
+              <img src="assets/testimonials/buyer-${(i % 3) + 1}.jpg" alt="${review.name}" class="review-card__photo" width="40" height="40" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2220%22 cy=%2220%22 r=%2220%22 fill=%22%23E8E8E8%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2216%22>${review.name.charAt(0)}</text></svg>'">
               <div class="review-card__info">
                 <h5>${review.name}</h5>
                 <p>${review.company} · ${review.date}</p>
@@ -230,7 +230,7 @@ function renderBookingPanel() {
   const total = session.price + platformFee;
 
   panel.innerHTML = `
-    <div class="booking-panel__price">$${expertData.rate}<span class="booking-panel__price-sub">/hour</span></div>
+    <div class="booking-panel__price">${formatINR(expertData.rate)}<span class="booking-panel__price-sub">/hour</span></div>
 
     <div class="booking-panel__sessions">
       <div class="session-tab__highlight ${currentSessionType === '30min' ? '' : currentSessionType === '60min' ? 'pos-2' : 'pos-3'}"></div>
@@ -278,15 +278,15 @@ function renderBookingPanel() {
     <div class="booking-panel__order">
       <div class="order-line">
         <span>${currentSessionType === '30min' ? '30 Min' : currentSessionType === '60min' ? '1 Hour' : '90 Min'} Session</span>
-        <span>$${session.price}</span>
+        <span>${formatINR(session.price)}</span>
       </div>
       <div class="order-line">
         <span>Platform Fee</span>
-        <span>$${platformFee}</span>
+        <span>${formatINR(platformFee)}</span>
       </div>
       <div class="order-line order-line--total">
         <span>Total</span>
-        <span>$${total}</span>
+        <span>${formatINR(total)}</span>
       </div>
     </div>
 
@@ -408,7 +408,7 @@ function updateMobileBookingBar() {
   if (!bar) return;
 
   const session = expertData.sessionTypes.find(s => s.id === currentSessionType);
-  bar.querySelector('.mobile-booking-bar__price').textContent = `$${session.price}`;
+  bar.querySelector('.mobile-booking-bar__price').textContent = formatINR(session.price);
 }
 
 function initReviewAnimations() {

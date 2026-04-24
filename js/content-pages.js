@@ -106,10 +106,29 @@ function renderStories() {
   const filtered = getFilteredStories();
   const visible = filtered.slice(0, visibleCount);
 
+  if (visible.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <svg class="empty-state__icon" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="50" stroke="#D1D8E0" stroke-width="2" stroke-dasharray="8 4"/>
+          <path d="M40 50h40M40 60h40M40 70h25" stroke="#8A95A5" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>We couldn't find anything matching that search</h3>
+        <p>Try different keywords, clear filters, or browse all success stories.</p>
+        <button class="btn btn--primary" onclick="document.getElementById('storiesSearch').value=''; filterStories(); document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active')); document.querySelector('.filter-pill[data-category=\\'all\\']').classList.add('active');">Clear Search</button>
+      </div>
+    `;
+    const countEl = document.getElementById('storiesCount');
+    if (countEl) countEl.textContent = '';
+    const btn = document.getElementById('loadMoreBtn');
+    if (btn) btn.style.display = 'none';
+    return;
+  }
+
   grid.innerHTML = visible.map((story, i) => `
     <div class="story-card" data-stagger style="animation-delay: ${i * 80}ms" onclick="window.location.href='success-stories-single.html?id=${story.id}'">
       <div class="story-card__image">
-        <img src="${story.image}" alt="${story.headline}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 220%22><rect fill=%22%23112240%22 width=%22400%22 height=%22220%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>Story</text></svg>'">
+        <img src="${story.image}" alt="${story.headline}" width="400" height="220" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 220%22><rect fill=%22%23112240%22 width=%22400%22 height=%22220%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2224%22>Story</text></svg>'">
         <span class="story-card__domain-badge">${story.category.replace('_', ' & ')}</span>
       </div>
       <div class="story-card__body">
@@ -122,7 +141,7 @@ function renderStories() {
         <div class="story-card__divider"></div>
         <div class="story-card__footer">
           <div class="story-card__expert">
-            <img src="${story.expertImage}" alt="${story.expert}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23F5A623%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%230A1628%22 font-size=%2212%22>${story.expert.charAt(0)}</text></svg>'">
+            <img src="${story.expertImage}" alt="${story.expert}" width="32" height="32" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23F5A623%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%230A1628%22 font-size=%2212%22>${story.expert.charAt(0)}</text></svg>'">
             <div>
               <div class="story-card__expert-name">${story.expert}</div>
             </div>
@@ -154,7 +173,7 @@ function renderMostRead() {
 
   list.innerHTML = top.map(story => `
     <div class="most-read-item" onclick="window.location.href='success-stories-single.html?id=${story.id}'">
-      <img src="${story.image}" alt="${story.headline}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%23E8ECF0%22 width=%2240%22 height=%2240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2210%22>Story</text></svg>'">
+      <img src="${story.image}" alt="${story.headline}" width="40" height="40" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect fill=%22%23E8ECF0%22 width=%2240%22 height=%2240%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%234A5568%22 font-size=%2210%22>Story</text></svg>'">
       <div class="most-read-item-content">
         <div class="most-read-item-title">${story.headline}</div>
         <div class="most-read-item-views">${story.views.toLocaleString()} reads this month</div>
@@ -187,9 +206,15 @@ function initCountUp() {
             current = target;
             clearInterval(timer);
           }
-          el.textContent = el.textContent.includes('₹')
-            ? '₹' + Math.floor(current) + ' Crore'
-            : Math.floor(current) + '%';
+          if (target >= 10000000) {
+            el.textContent = '₹' + Math.floor(current / 10000000) + ' Cr';
+          } else if (target >= 100000) {
+            el.textContent = '₹' + Math.floor(current / 100000) + ' L';
+          } else {
+            el.textContent = el.textContent.includes('₹')
+              ? '₹' + Math.floor(current)
+              : Math.floor(current) + '%';
+          }
         }, 30);
         observer.unobserve(el);
       }

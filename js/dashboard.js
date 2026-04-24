@@ -91,7 +91,7 @@ function renderOverview() {
       <div class="next-session-card__label">NEXT SESSION</div>
       <div class="next-session-card__content">
         <div class="next-session-card__expert">
-          <img src="${nextSession.expertPhoto}" alt="${nextSession.expert}" class="next-session-card__photo">
+          <img src="${nextSession.expertPhoto}" alt="${nextSession.expert}" class="next-session-card__photo" width="48" height="48">
           <div>
             <div class="next-session-card__name">${nextSession.expert}</div>
             <div class="next-session-card__domain">${nextSession.domain} Expert</div>
@@ -158,7 +158,7 @@ function renderOverview() {
       </div>
       ${userData.sessions.slice(0, 3).map(session => `
         <div class="session-row" data-session-id="${session.id}">
-          <img src="${session.expertPhoto}" alt="${session.expert}" class="session-row__photo">
+          <img src="${session.expertPhoto}" alt="${session.expert}" class="session-row__photo" width="40" height="40">
           <div class="session-row__info">
             <div class="session-row__name">${session.expert}</div>
             <div class="session-row__meta">
@@ -218,7 +218,7 @@ function renderMySessions() {
       ${userData.sessions.map(session => `
         <div class="sessions-table__row" data-session-id="${session.id}">
           <div class="sessions-table__expert">
-            <img src="${session.expertPhoto}" alt="${session.expert}">
+            <img src="${session.expertPhoto}" alt="${session.expert}" width="32" height="32">
             <span class="sessions-table__expert-name">${session.expert}</span>
           </div>
           <div class="sessions-table__cell">${session.domain}</div>

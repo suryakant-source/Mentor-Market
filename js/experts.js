@@ -22,25 +22,25 @@ const experienceOptions = [
 const ratingOptions = [4, 3, 2, 1];
 
 const expertsData = [
-  { id: 1, name: 'Dr. Sarah Chen', title: 'Former VP at Goldman Sachs', domain: 'Finance', rating: 4.9, reviews: 127, yearsExp: 25, sessions: 340, rate: 350, bio: 'Specialized in M&A advisory and corporate restructuring with 25 years of experience at top-tier financial institutions.', image: 'assets/experts/expert-1.jpg' },
-  { id: 2, name: 'Michael Roberts', title: 'Partner at Davis & Co', domain: 'Legal', rating: 4.8, reviews: 94, yearsExp: 30, sessions: 280, rate: 400, bio: 'Corporate law expert focusing on startup funding, IP protection, and regulatory compliance for tech companies.', image: 'assets/experts/expert-2.jpg' },
-  { id: 3, name: 'Jennifer Walsh', title: 'Ex-McKinsey Director', domain: 'Operations', rating: 4.9, reviews: 156, sessions: 420, yearsExp: 22, rate: 380, bio: 'Operations strategy specialist helping companies optimize supply chains and implement lean manufacturing principles.', image: 'assets/experts/expert-3.jpg' },
-  { id: 4, name: 'Robert Kim', title: 'Former CTO, Siemens Health', domain: 'Healthcare', rating: 4.7, reviews: 82, yearsExp: 28, sessions: 195, rate: 320, bio: 'Healthcare technology consultant with expertise in HIPAA compliance, EHR systems, and digital transformation.', image: 'assets/experts/expert-4.jpg' },
-  { id: 5, name: 'Amanda Foster', title: 'SVP Engineering, Google', domain: 'Technology', rating: 4.9, reviews: 143, yearsExp: 20, sessions: 310, rate: 420, bio: 'Technical leadership coach helping engineers transition into management and navigate big tech career paths.', image: 'assets/experts/expert-5.jpg' },
-  { id: 6, name: 'David Mitchell', title: 'Former VP Sales, Oracle', domain: 'Sales', rating: 4.8, reviews: 118, yearsExp: 26, sessions: 260, rate: 290, bio: 'Enterprise sales strategist with a track record of building high-performing SaaS sales teams from scratch.', image: 'assets/experts/expert-1.jpg' },
-  { id: 7, name: 'Lisa Park', title: 'Chief HR Officer, Boeing', domain: 'HR', rating: 4.9, reviews: 89, yearsExp: 24, sessions: 220, rate: 270, bio: 'HR transformation expert specializing in organizational design, talent management, and workplace culture.', image: 'assets/experts/expert-2.jpg' },
-  { id: 8, name: 'James Wilson', title: 'Supply Chain Director, Amazon', domain: 'Supply Chain', rating: 4.6, reviews: 67, yearsExp: 22, sessions: 150, rate: 310, bio: 'Logistics optimization specialist helping businesses scale their supply chain operations for global expansion.', image: 'assets/experts/expert-3.jpg' },
-  { id: 9, name: 'Rachel Green', title: 'CMO, Unilever', domain: 'Marketing', rating: 4.9, reviews: 132, yearsExp: 28, sessions: 380, rate: 340, bio: 'Brand strategy expert with deep experience in digital marketing, consumer psychology, and global market positioning.', image: 'assets/experts/expert-4.jpg' },
-  { id: 10, name: 'Thomas Reed', title: 'Real Estate Developer', domain: 'Real Estate', rating: 4.7, reviews: 76, yearsExp: 32, sessions: 190, rate: 360, bio: 'Commercial real estate veteran specializing in mixed-use development and adaptive reuse projects.', image: 'assets/experts/expert-5.jpg' },
-  { id: 11, name: 'Elena Rodriguez', title: 'Finance Director, Tesla', domain: 'Finance', rating: 4.8, reviews: 95, yearsExp: 18, sessions: 210, rate: 380, bio: 'Fintech and startup finance specialist with expertise in fundraising, valuation, and investor relations.', image: 'assets/experts/expert-1.jpg' },
-  { id: 12, name: 'Mark Thompson', title: 'IP Attorney, Fenwick', domain: 'Legal', rating: 4.9, reviews: 108, yearsExp: 20, sessions: 245, rate: 450, bio: 'Intellectual property lawyer helping startups protect their innovations through patents, trademarks, and trade secrets.', image: 'assets/experts/expert-2.jpg' }
+  { id: 1, name: 'Dr. Sarah Chen', title: 'Former VP at Goldman Sachs', domain: 'Finance', rating: 4.9, reviews: 127, yearsExp: 25, sessions: 340, rate: 29000, bio: 'Specialized in M&A advisory and corporate restructuring with 25 years of experience at top-tier financial institutions.', image: 'assets/experts/expert-1.jpg' },
+  { id: 2, name: 'Michael Roberts', title: 'Partner at Davis & Co', domain: 'Legal', rating: 4.8, reviews: 94, yearsExp: 30, sessions: 280, rate: 33000, bio: 'Corporate law expert focusing on startup funding, IP protection, and regulatory compliance for tech companies.', image: 'assets/experts/expert-2.jpg' },
+  { id: 3, name: 'Jennifer Walsh', title: 'Ex-McKinsey Director', domain: 'Operations', rating: 4.9, reviews: 156, sessions: 420, yearsExp: 22, rate: 32000, bio: 'Operations strategy specialist helping companies optimize supply chains and implement lean manufacturing principles.', image: 'assets/experts/expert-3.jpg' },
+  { id: 4, name: 'Robert Kim', title: 'Former CTO, Siemens Health', domain: 'Healthcare', rating: 4.7, reviews: 82, yearsExp: 28, sessions: 195, rate: 27000, bio: 'Healthcare technology consultant with expertise in HIPAA compliance, EHR systems, and digital transformation.', image: 'assets/experts/expert-4.jpg' },
+  { id: 5, name: 'Amanda Foster', title: 'SVP Engineering, Google', domain: 'Technology', rating: 4.9, reviews: 143, yearsExp: 20, sessions: 310, rate: 35000, bio: 'Technical leadership coach helping engineers transition into management and navigate big tech career paths.', image: 'assets/experts/expert-5.jpg' },
+  { id: 6, name: 'David Mitchell', title: 'Former VP Sales, Oracle', domain: 'Sales', rating: 4.8, reviews: 118, yearsExp: 26, sessions: 260, rate: 24000, bio: 'Enterprise sales strategist with a track record of building high-performing SaaS sales teams from scratch.', image: 'assets/experts/expert-1.jpg' },
+  { id: 7, name: 'Lisa Park', title: 'Chief HR Officer, Boeing', domain: 'HR', rating: 4.9, reviews: 89, yearsExp: 24, sessions: 220, rate: 22000, bio: 'HR transformation expert specializing in organizational design, talent management, and workplace culture.', image: 'assets/experts/expert-2.jpg' },
+  { id: 8, name: 'James Wilson', title: 'Supply Chain Director, Amazon', domain: 'Supply Chain', rating: 4.6, reviews: 67, yearsExp: 22, sessions: 150, rate: 26000, bio: 'Logistics optimization specialist helping businesses scale their supply chain operations for global expansion.', image: 'assets/experts/expert-3.jpg' },
+  { id: 9, name: 'Rachel Green', title: 'CMO, Unilever', domain: 'Marketing', rating: 4.9, reviews: 132, yearsExp: 28, sessions: 380, rate: 28000, bio: 'Brand strategy expert with deep experience in digital marketing, consumer psychology, and global market positioning.', image: 'assets/experts/expert-4.jpg' },
+  { id: 10, name: 'Thomas Reed', title: 'Real Estate Developer', domain: 'Real Estate', rating: 4.7, reviews: 76, yearsExp: 32, sessions: 190, rate: 30000, bio: 'Commercial real estate veteran specializing in mixed-use development and adaptive reuse projects.', image: 'assets/experts/expert-5.jpg' },
+  { id: 11, name: 'Elena Rodriguez', title: 'Finance Director, Tesla', domain: 'Finance', rating: 4.8, reviews: 95, yearsExp: 18, sessions: 210, rate: 32000, bio: 'Fintech and startup finance specialist with expertise in fundraising, valuation, and investor relations.', image: 'assets/experts/expert-1.jpg' },
+  { id: 12, name: 'Mark Thompson', title: 'IP Attorney, Fenwick', domain: 'Legal', rating: 4.9, reviews: 108, yearsExp: 20, sessions: 245, rate: 37000, bio: 'Intellectual property lawyer helping startups protect their innovations through patents, trademarks, and trade secrets.', image: 'assets/experts/expert-2.jpg' }
 ];
 
 let currentFilters = {
   search: '',
   domains: [],
   minPrice: 0,
-  maxPrice: 500,
+  maxPrice: 50000,
   minRating: 0,
   experience: '',
   sort: 'best_match'
@@ -116,8 +116,8 @@ function initFilterSidebar() {
         <div class="price-range-thumb" data-thumb="max"></div>
       </div>
       <div class="price-range-inputs">
-        <input type="number" id="minPrice" value="0" min="0" max="500">
-        <input type="number" id="maxPrice" value="500" min="0" max="500">
+        <input type="number" id="minPrice" value="0" min="0" max="50000">
+        <input type="number" id="maxPrice" value="50000" min="0" max="50000">
       </div>
     </div>
   `;
@@ -296,7 +296,7 @@ function updateClearVisibility(filter) {
 
   let hasValue = false;
   if (filter === 'domains') hasValue = currentFilters.domains.length > 0;
-  if (filter === 'price') hasValue = currentFilters.minPrice > 0 || currentFilters.maxPrice < 500;
+  if (filter === 'price') hasValue = currentFilters.minPrice > 0 || currentFilters.maxPrice < 50000;
   if (filter === 'experience') hasValue = currentFilters.experience !== '';
   if (filter === 'rating') hasValue = currentFilters.minRating > 0;
 
@@ -310,9 +310,9 @@ function clearFilter(filter) {
   }
   if (filter === 'price') {
     currentFilters.minPrice = 0;
-    currentFilters.maxPrice = 500;
+    currentFilters.maxPrice = 50000;
     document.getElementById('minPrice').value = 0;
-    document.getElementById('maxPrice').value = 500;
+    document.getElementById('maxPrice').value = 50000;
     const slider = document.getElementById('priceSlider');
     slider.querySelector('[data-thumb="min"]').style.left = '0%';
     slider.querySelector('[data-thumb="max"]').style.left = '100%';
@@ -425,9 +425,14 @@ function renderExperts() {
 
     if (pageExperts.length === 0) {
       grid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 64px 24px;">
-          <p style="font-size: 18px; color: var(--gray-600);">No experts found matching your criteria.</p>
-          <button class="btn btn--primary" style="margin-top: 16px;" onclick="clearAllFilters()">Clear Filters</button>
+        <div class="empty-state">
+          <svg class="empty-state__icon" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="50" stroke="#D1D8E0" stroke-width="2" stroke-dasharray="8 4"/>
+            <path d="M40 50h40M40 60h40M40 70h25" stroke="#8A95A5" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>We couldn't find any experts matching that search</h3>
+          <p>Try different keywords, clear filters, or browse all experts.</p>
+          <button class="btn btn--primary" onclick="clearAllFilters()">Clear Filters</button>
         </div>
       `;
       return;
@@ -436,7 +441,7 @@ function renderExperts() {
     grid.innerHTML = pageExperts.map(expert => `
       <div class="expert-card" onclick="window.location.href='profile.html?id=${expert.id}'">
         <div class="expert-card__photo-wrap">
-          <img src="${expert.image}" alt="${expert.name}" class="expert-card__photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 280 180%22><rect fill=%22%23112240%22 width=%22280%22 height=%22180%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2248%22>${expert.name.charAt(0)}</text></svg>'">
+          <img src="${expert.image}" alt="${expert.name}" class="expert-card__photo" width="280" height="180" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 280 180%22><rect fill=%22%23112240%22 width=%22280%22 height=%22180%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 fill=%22%23F5A623%22 font-size=%2248%22>${expert.name.charAt(0)}</text></svg>'">
           <div class="expert-card__photo-overlay"></div>
           <span class="expert-card__badge expert-card__badge--verified">✓ Verified</span>
           <span class="expert-card__badge expert-card__badge--domain">${expert.domain}</span>
@@ -460,7 +465,7 @@ function renderExperts() {
             <span class="expert-card__stat expert-card__stat--sessions">${expert.sessions} Sessions</span>
           </div>
           <p class="expert-card__bio">${expert.bio}</p>
-          <div class="expert-card__price">$${expert.rate}<span>/hr</span></div>
+          <div class="expert-card__price">${formatINR(expert.rate)}<span>/hour</span></div>
           <div class="expert-card__footer">
             <a href="profile.html?id=${expert.id}" class="btn btn--secondary">View Profile</a>
             <a href="booking.html?expert=${expert.id}" class="btn btn--primary">Book Now</a>
